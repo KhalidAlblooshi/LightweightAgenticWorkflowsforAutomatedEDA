@@ -41,7 +41,7 @@ def generate_charts(
     -------
     List of saved file path strings (relative to *output_dir*).
     """
-    charts_dir = output_dir / "charts" / sanitize_name(dataset_name) / mode
+    charts_dir = output_dir / "charts"
     ensure_dir(charts_dir)
 
     saved: list = []
