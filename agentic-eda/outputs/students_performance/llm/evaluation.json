@@ -1,0 +1,13 @@
+{
+  "dataset_name": "students_performance",
+  "mode": "llm",
+  "runtime_seconds": 1.2986,
+  "number_of_tools_called": 12,
+  "number_of_insights_generated": 8,
+  "number_of_charts_generated": 13,
+  "completeness_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 7.73,
+  "visualization_suitability_score": 9.31,
+  "error_count": 1
+}

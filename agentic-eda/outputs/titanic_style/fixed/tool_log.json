@@ -1,0 +1,62 @@
+[
+  {
+    "tool_name": "dataset_overview",
+    "status": "success",
+    "duration_seconds": 0.0023,
+    "error_message": null
+  },
+  {
+    "tool_name": "missing_value_analysis",
+    "status": "success",
+    "duration_seconds": 0.0014,
+    "error_message": null
+  },
+  {
+    "tool_name": "duplicate_analysis",
+    "status": "success",
+    "duration_seconds": 0.0011,
+    "error_message": null
+  },
+  {
+    "tool_name": "numeric_summary",
+    "status": "success",
+    "duration_seconds": 0.0074,
+    "error_message": null
+  },
+  {
+    "tool_name": "categorical_summary",
+    "status": "success",
+    "duration_seconds": 0.0045,
+    "error_message": null
+  },
+  {
+    "tool_name": "correlation_analysis",
+    "status": "success",
+    "duration_seconds": 0.0011,
+    "error_message": null
+  },
+  {
+    "tool_name": "outlier_detection",
+    "status": "success",
+    "duration_seconds": 0.0061,
+    "error_message": null
+  },
+  {
+    "tool_name": "visualization_recommendation",
+    "status": "success",
+    "duration_seconds": 0.0005,
+    "error_message": null
+  },
+  {
+    "tool_name": "chart_generation",
+    "status": "success",
+    "duration_seconds": 1.4858,
+    "error_message": null
+  },
+  {
+    "tool_name": "insight_generation",
+    "status": "success",
+    "duration_seconds": 0.0,
+    "error_message": null
+  }
+]

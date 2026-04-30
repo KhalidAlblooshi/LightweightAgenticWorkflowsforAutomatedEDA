@@ -1,0 +1,68 @@
+[
+  {
+    "tool_name": "dataset_overview",
+    "status": "success",
+    "duration_seconds": 0.0032,
+    "error_message": null
+  },
+  {
+    "tool_name": "missing_value_analysis",
+    "status": "success",
+    "duration_seconds": 0.0016,
+    "error_message": null
+  },
+  {
+    "tool_name": "duplicate_analysis",
+    "status": "success",
+    "duration_seconds": 0.0011,
+    "error_message": null
+  },
+  {
+    "tool_name": "numeric_summary",
+    "status": "success",
+    "duration_seconds": 0.0043,
+    "error_message": null
+  },
+  {
+    "tool_name": "correlation_analysis",
+    "status": "success",
+    "duration_seconds": 0.0008,
+    "error_message": null
+  },
+  {
+    "tool_name": "outlier_detection",
+    "status": "success",
+    "duration_seconds": 0.0035,
+    "error_message": null
+  },
+  {
+    "tool_name": "categorical_summary",
+    "status": "success",
+    "duration_seconds": 0.0054,
+    "error_message": null
+  },
+  {
+    "tool_name": "target_aware_analysis",
+    "status": "success",
+    "duration_seconds": 0.0022,
+    "error_message": null
+  },
+  {
+    "tool_name": "visualization_recommendation",
+    "status": "success",
+    "duration_seconds": 0.0005,
+    "error_message": null
+  },
+  {
+    "tool_name": "chart_generation",
+    "status": "success",
+    "duration_seconds": 1.2222,
+    "error_message": null
+  },
+  {
+    "tool_name": "insight_generation",
+    "status": "success",
+    "duration_seconds": 0.0,
+    "error_message": null
+  }
+]

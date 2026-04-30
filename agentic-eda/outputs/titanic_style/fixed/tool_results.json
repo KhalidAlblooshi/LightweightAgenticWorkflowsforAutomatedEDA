@@ -1,0 +1,532 @@
+{
+  "dataset_overview": {
+    "shape": {
+      "rows": 800,
+      "columns": 11
+    },
+    "column_names": [
+      "PassengerId",
+      "Survived",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ],
+    "dtype_summary": {
+      "numeric": 7,
+      "categorical": 4,
+      "datetime": 0
+    },
+    "memory_usage_kb": 212.94,
+    "duplicate_row_count": 0,
+    "total_cells": 8800
+  },
+  "missing_value_analysis": {
+    "per_column": {
+      "PassengerId": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Survived": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Pclass": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Name": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Sex": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Age": {
+        "missing_count": 163,
+        "missing_pct": 20.38
+      },
+      "SibSp": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Parch": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Fare": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "Cabin": {
+        "missing_count": 615,
+        "missing_pct": 76.88
+      },
+      "Embarked": {
+        "missing_count": 1,
+        "missing_pct": 0.12
+      }
+    },
+    "total_missing_cells": 779,
+    "total_cells": 8800,
+    "overall_missing_pct": 8.85,
+    "columns_above_20pct_missing": [
+      "Age",
+      "Cabin"
+    ]
+  },
+  "duplicate_analysis": {
+    "duplicate_row_count": 0,
+    "duplicate_row_pct": 0.0,
+    "total_rows": 800
+  },
+  "numeric_summary": {
+    "PassengerId": {
+      "count": 800,
+      "mean": 400.5,
+      "median": 400.5,
+      "std": 231.0844,
+      "min": 1.0,
+      "max": 800.0,
+      "q25": 200.75,
+      "q75": 600.25,
+      "skewness": 0.0,
+      "kurtosis": -1.2
+    },
+    "Survived": {
+      "count": 800,
+      "mean": 0.385,
+      "median": 0.0,
+      "std": 0.4869,
+      "min": 0.0,
+      "max": 1.0,
+      "q25": 0.0,
+      "q75": 1.0,
+      "skewness": 0.47356,
+      "kurtosis": -1.780197
+    },
+    "Pclass": {
+      "count": 800,
+      "mean": 2.305,
+      "median": 3.0,
+      "std": 0.836869,
+      "min": 1.0,
+      "max": 3.0,
+      "q25": 2.0,
+      "q75": 3.0,
+      "skewness": -0.622347,
+      "kurtosis": -1.290295
+    },
+    "Age": {
+      "count": 637,
+      "mean": 29.871146,
+      "median": 28.0,
+      "std": 14.544301,
+      "min": 0.67,
+      "max": 80.0,
+      "q25": 21.0,
+      "q75": 38.0,
+      "skewness": 0.396534,
+      "kurtosis": 0.137456
+    },
+    "SibSp": {
+      "count": 800,
+      "mean": 0.51875,
+      "median": 0.0,
+      "std": 1.063514,
+      "min": 0.0,
+      "max": 8.0,
+      "q25": 0.0,
+      "q75": 1.0,
+      "skewness": 3.587,
+      "kurtosis": 17.323714
+    },
+    "Parch": {
+      "count": 800,
+      "mean": 0.37375,
+      "median": 0.0,
+      "std": 0.801476,
+      "min": 0.0,
+      "max": 6.0,
+      "q25": 0.0,
+      "q75": 0.0,
+      "skewness": 2.777661,
+      "kurtosis": 9.968382
+    },
+    "Fare": {
+      "count": 800,
+      "mean": 33.038536,
+      "median": 14.5,
+      "std": 51.52495,
+      "min": 0.0,
+      "max": 512.3292,
+      "q25": 7.925,
+      "q75": 31.275,
+      "skewness": 4.706886,
+      "kurtosis": 31.718541
+    }
+  },
+  "categorical_summary": {
+    "Name": {
+      "unique_count": 800,
+      "top_value_counts": {
+        "Braund, Mr. Owen Harris": 1,
+        "Cumings, Mrs. John Bradley (Florence Briggs Thayer)": 1,
+        "Heikkinen, Miss. Laina": 1,
+        "Futrelle, Mrs. Jacques Heath (Lily May Peel)": 1,
+        "Allen, Mr. William Henry": 1,
+        "Moran, Mr. James": 1,
+        "McCarthy, Mr. Timothy J": 1,
+        "Palsson, Master. Gosta Leonard": 1,
+        "Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)": 1,
+        "Nasser, Mrs. Nicholas (Adele Achem)": 1
+      },
+      "mode": "Abbott, Mr. Rossmore Edward",
+      "total_non_null": 800
+    },
+    "Sex": {
+      "unique_count": 2,
+      "top_value_counts": {
+        "male": 517,
+        "female": 283
+      },
+      "mode": "male",
+      "total_non_null": 800
+    },
+    "Cabin": {
+      "unique_count": 136,
+      "top_value_counts": {
+        "G6": 4,
+        "C23 C25 C27": 4,
+        "F33": 3,
+        "E101": 3,
+        "F2": 3,
+        "D": 3,
+        "C22 C26": 3,
+        "B96 B98": 3,
+        "C123": 2,
+        "D33": 2
+      },
+      "mode": "C23 C25 C27",
+      "total_non_null": 185
+    },
+    "Embarked": {
+      "unique_count": 3,
+      "top_value_counts": {
+        "S": 577,
+        "C": 149,
+        "Q": 73
+      },
+      "mode": "S",
+      "total_non_null": 799
+    }
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "PassengerId": {
+        "PassengerId": 1.0,
+        "Survived": -0.001568,
+        "Pclass": -0.051697,
+        "Age": 0.067472,
+        "SibSp": -0.081148,
+        "Parch": -0.02154,
+        "Fare": 0.04661
+      },
+      "Survived": {
+        "PassengerId": -0.001568,
+        "Survived": 1.0,
+        "Pclass": -0.325399,
+        "Age": -0.087131,
+        "SibSp": -0.026043,
+        "Parch": 0.076603,
+        "Fare": 0.250547
+      },
+      "Pclass": {
+        "PassengerId": -0.051697,
+        "Survived": -0.325399,
+        "Pclass": 1.0,
+        "Age": -0.372172,
+        "SibSp": 0.07794,
+        "Parch": 0.012698,
+        "Fare": -0.559097
+      },
+      "Age": {
+        "PassengerId": 0.067472,
+        "Survived": -0.087131,
+        "Pclass": -0.372172,
+        "Age": 1.0,
+        "SibSp": -0.306498,
+        "Parch": -0.182402,
+        "Fare": 0.08819
+      },
+      "SibSp": {
+        "PassengerId": -0.081148,
+        "Survived": -0.026043,
+        "Pclass": 0.07794,
+        "Age": -0.306498,
+        "SibSp": 1.0,
+        "Parch": 0.410972,
+        "Fare": 0.150079
+      },
+      "Parch": {
+        "PassengerId": -0.02154,
+        "Survived": 0.076603,
+        "Pclass": 0.012698,
+        "Age": -0.182402,
+        "SibSp": 0.410972,
+        "Parch": 1.0,
+        "Fare": 0.212204
+      },
+      "Fare": {
+        "PassengerId": 0.04661,
+        "Survived": 0.250547,
+        "Pclass": -0.559097,
+        "Age": 0.08819,
+        "SibSp": 0.150079,
+        "Parch": 0.212204,
+        "Fare": 1.0
+      }
+    },
+    "top_correlated_pairs": [
+      {
+        "col1": "Pclass",
+        "col2": "Fare",
+        "correlation": -0.559097
+      },
+      {
+        "col1": "SibSp",
+        "col2": "Parch",
+        "correlation": 0.410972
+      },
+      {
+        "col1": "Pclass",
+        "col2": "Age",
+        "correlation": -0.372172
+      },
+      {
+        "col1": "Survived",
+        "col2": "Pclass",
+        "correlation": -0.325399
+      },
+      {
+        "col1": "Age",
+        "col2": "SibSp",
+        "correlation": -0.306498
+      }
+    ]
+  },
+  "outlier_detection": {
+    "PassengerId": {
+      "q1": 200.75,
+      "q3": 600.25,
+      "iqr": 399.5,
+      "lower_fence": -398.5,
+      "upper_fence": 1199.5,
+      "outlier_count": 0,
+      "outlier_pct": 0.0
+    },
+    "Survived": {
+      "q1": 0.0,
+      "q3": 1.0,
+      "iqr": 1.0,
+      "lower_fence": -1.5,
+      "upper_fence": 2.5,
+      "outlier_count": 0,
+      "outlier_pct": 0.0
+    },
+    "Pclass": {
+      "q1": 2.0,
+      "q3": 3.0,
+      "iqr": 1.0,
+      "lower_fence": 0.5,
+      "upper_fence": 4.5,
+      "outlier_count": 0,
+      "outlier_pct": 0.0
+    },
+    "Age": {
+      "q1": 21.0,
+      "q3": 38.0,
+      "iqr": 17.0,
+      "lower_fence": -4.5,
+      "upper_fence": 63.5,
+      "outlier_count": 12,
+      "outlier_pct": 1.88
+    },
+    "SibSp": {
+      "q1": 0.0,
+      "q3": 1.0,
+      "iqr": 1.0,
+      "lower_fence": -1.5,
+      "upper_fence": 2.5,
+      "outlier_count": 40,
+      "outlier_pct": 5.0
+    },
+    "Parch": {
+      "q1": 0.0,
+      "q3": 0.0,
+      "iqr": 0.0,
+      "lower_fence": 0.0,
+      "upper_fence": 0.0,
+      "outlier_count": 186,
+      "outlier_pct": 23.25
+    },
+    "Fare": {
+      "q1": 7.925,
+      "q3": 31.275,
+      "iqr": 23.35,
+      "lower_fence": -27.1,
+      "upper_fence": 66.3,
+      "outlier_count": 107,
+      "outlier_pct": 13.38
+    }
+  },
+  "visualization_recommendation": [
+    {
+      "chart_type": "missing_values_bar",
+      "columns": [
+        "PassengerId",
+        "Survived",
+        "Pclass",
+        "Name",
+        "Sex",
+        "Age",
+        "SibSp",
+        "Parch",
+        "Fare",
+        "Cabin",
+        "Embarked"
+      ],
+      "rationale": "Visualise the extent of missingness across all columns."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "PassengerId"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'PassengerId'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "Survived"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'Survived'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "Pclass"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'Pclass'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "Age"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'Age'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "SibSp"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'SibSp'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "Parch"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'Parch'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "Name"
+      ],
+      "rationale": "Show the frequency of categories in 'Name'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "Sex"
+      ],
+      "rationale": "Show the frequency of categories in 'Sex'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "Cabin"
+      ],
+      "rationale": "Show the frequency of categories in 'Cabin'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "Embarked"
+      ],
+      "rationale": "Show the frequency of categories in 'Embarked'."
+    },
+    {
+      "chart_type": "correlation_heatmap",
+      "columns": [
+        "PassengerId",
+        "Survived",
+        "Pclass",
+        "Age",
+        "SibSp",
+        "Parch",
+        "Fare"
+      ],
+      "rationale": "Reveal linear relationships between all numeric features."
+    },
+    {
+      "chart_type": "target_histogram",
+      "columns": [
+        "Survived"
+      ],
+      "rationale": "Distribution of numeric target 'Survived'."
+    }
+  ],
+  "chart_generation": {
+    "chart_paths": [
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/missing_values_bar.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/hist_PassengerId.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/hist_Survived.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/hist_Pclass.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/hist_Age.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/hist_SibSp.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/hist_Parch.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/catbar_Name.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/catbar_Sex.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/catbar_Cabin.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/catbar_Embarked.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/correlation_heatmap.png",
+      "outputs/titanic_style/fixed/charts/titanic_style/fixed/target_dist_Survived.png"
+    ],
+    "chart_count": 13
+  },
+  "insight_generation": {
+    "insights": [
+      "The dataset 'titanic_style' contains 800 rows and 11 columns.",
+      "779 missing cells detected (8.8% of all values).",
+      "Columns with >20% missing data: Age, Cabin. Consider imputation or removal before modelling.",
+      "No duplicate rows were found.",
+      "Highly skewed numeric columns (|skew|>1): 'SibSp' (skew=3.59), 'Parch' (skew=2.78), 'Fare' (skew=4.71). Log or power transforms may improve model performance.",
+      "Strongest correlation: 'Pclass' \u2194 'Fare' (r=-0.559). Multicollinearity may affect linear models.",
+      "5 feature pairs have |r|>0.3, suggesting potential redundancy.",
+      "Columns with >5% outliers (IQR method): Parch, Fare. Investigate these rows and consider robust scalers.",
+      "High-cardinality categorical columns (>50 unique values): Name, Cabin. Encoding strategy should be chosen carefully.",
+      "13 visualizations were recommended to aid exploratory analysis.",
+      "Data quality issues found: missing values, outliers. Address these before downstream modelling."
+    ],
+    "insight_count": 11
+  }
+}

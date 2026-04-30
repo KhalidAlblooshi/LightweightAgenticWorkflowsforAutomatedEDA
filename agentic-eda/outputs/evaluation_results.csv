@@ -1,0 +1,10 @@
+dataset_name,mode,runtime_seconds,number_of_tools_called,number_of_insights_generated,number_of_charts_generated,completeness_score,redundancy_score,clarity_score,visualization_suitability_score,error_count
+students_performance,fixed,1.5734,10,7,13,10.0,10.0,7.8,9.31,0
+students_performance,rule,1.2447,11,8,13,10.0,10.0,7.73,9.31,0
+students_performance,llm,1.2986,12,8,13,10.0,10.0,7.73,9.31,1
+titanic_style,fixed,1.5104,10,11,13,10.0,10.0,8.5,9.54,0
+titanic_style,rule,1.5192,11,12,13,10.0,10.0,8.43,9.54,0
+titanic_style,llm,1.4717,12,12,13,10.0,10.0,8.43,9.54,1
+wine_quality,fixed,1.2461,10,9,9,10.0,10.0,8.3,9.67,0
+wine_quality,rule,1.261,11,10,9,10.0,10.0,8.23,9.67,0
+wine_quality,llm,1.2032,12,10,9,10.0,10.0,8.23,9.67,1

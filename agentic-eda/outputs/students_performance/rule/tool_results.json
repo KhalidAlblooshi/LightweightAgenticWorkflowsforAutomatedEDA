@@ -1,0 +1,451 @@
+{
+  "dataset_overview": {
+    "shape": {
+      "rows": 1000,
+      "columns": 10
+    },
+    "column_names": [
+      "student_id",
+      "gender",
+      "race_ethnicity",
+      "parental_education",
+      "lunch",
+      "test_preparation",
+      "math_score",
+      "reading_score",
+      "writing_score",
+      "grade"
+    ],
+    "dtype_summary": {
+      "numeric": 4,
+      "categorical": 6,
+      "datetime": 0
+    },
+    "memory_usage_kb": 360.16,
+    "duplicate_row_count": 0,
+    "total_cells": 10000
+  },
+  "missing_value_analysis": {
+    "per_column": {
+      "student_id": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "gender": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "race_ethnicity": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "parental_education": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "lunch": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "test_preparation": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "math_score": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "reading_score": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "writing_score": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      },
+      "grade": {
+        "missing_count": 0,
+        "missing_pct": 0.0
+      }
+    },
+    "total_missing_cells": 0,
+    "total_cells": 10000,
+    "overall_missing_pct": 0.0,
+    "columns_above_20pct_missing": []
+  },
+  "duplicate_analysis": {
+    "duplicate_row_count": 0,
+    "duplicate_row_pct": 0.0,
+    "total_rows": 1000
+  },
+  "numeric_summary": {
+    "student_id": {
+      "count": 1000,
+      "mean": 500.5,
+      "median": 500.5,
+      "std": 288.819436,
+      "min": 1.0,
+      "max": 1000.0,
+      "q25": 250.75,
+      "q75": 750.25,
+      "skewness": 0.0,
+      "kurtosis": -1.2
+    },
+    "math_score": {
+      "count": 1000,
+      "mean": 62.954,
+      "median": 63.0,
+      "std": 15.642844,
+      "min": 1.0,
+      "max": 100.0,
+      "q25": 52.0,
+      "q75": 74.0,
+      "skewness": -0.206188,
+      "kurtosis": 0.243566
+    },
+    "reading_score": {
+      "count": 1000,
+      "mean": 63.707,
+      "median": 64.0,
+      "std": 16.627616,
+      "min": 8.0,
+      "max": 100.0,
+      "q25": 52.0,
+      "q75": 75.0,
+      "skewness": -0.135288,
+      "kurtosis": -0.226702
+    },
+    "writing_score": {
+      "count": 1000,
+      "mean": 61.98,
+      "median": 62.0,
+      "std": 15.939563,
+      "min": 0.0,
+      "max": 100.0,
+      "q25": 52.0,
+      "q75": 73.0,
+      "skewness": -0.177375,
+      "kurtosis": 0.104388
+    }
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "student_id": {
+        "student_id": 1.0,
+        "math_score": 0.04195,
+        "reading_score": 0.018996,
+        "writing_score": 0.00408
+      },
+      "math_score": {
+        "student_id": 0.04195,
+        "math_score": 1.0,
+        "reading_score": 0.78914,
+        "writing_score": 0.795204
+      },
+      "reading_score": {
+        "student_id": 0.018996,
+        "math_score": 0.78914,
+        "reading_score": 1.0,
+        "writing_score": 0.617011
+      },
+      "writing_score": {
+        "student_id": 0.00408,
+        "math_score": 0.795204,
+        "reading_score": 0.617011,
+        "writing_score": 1.0
+      }
+    },
+    "top_correlated_pairs": [
+      {
+        "col1": "math_score",
+        "col2": "writing_score",
+        "correlation": 0.795204
+      },
+      {
+        "col1": "math_score",
+        "col2": "reading_score",
+        "correlation": 0.78914
+      },
+      {
+        "col1": "reading_score",
+        "col2": "writing_score",
+        "correlation": 0.617011
+      }
+    ]
+  },
+  "outlier_detection": {
+    "student_id": {
+      "q1": 250.75,
+      "q3": 750.25,
+      "iqr": 499.5,
+      "lower_fence": -498.5,
+      "upper_fence": 1499.5,
+      "outlier_count": 0,
+      "outlier_pct": 0.0
+    },
+    "math_score": {
+      "q1": 52.0,
+      "q3": 74.0,
+      "iqr": 22.0,
+      "lower_fence": 19.0,
+      "upper_fence": 107.0,
+      "outlier_count": 5,
+      "outlier_pct": 0.5
+    },
+    "reading_score": {
+      "q1": 52.0,
+      "q3": 75.0,
+      "iqr": 23.0,
+      "lower_fence": 17.5,
+      "upper_fence": 109.5,
+      "outlier_count": 6,
+      "outlier_pct": 0.6
+    },
+    "writing_score": {
+      "q1": 52.0,
+      "q3": 73.0,
+      "iqr": 21.0,
+      "lower_fence": 20.5,
+      "upper_fence": 104.5,
+      "outlier_count": 6,
+      "outlier_pct": 0.6
+    }
+  },
+  "categorical_summary": {
+    "gender": {
+      "unique_count": 2,
+      "top_value_counts": {
+        "female": 516,
+        "male": 484
+      },
+      "mode": "female",
+      "total_non_null": 1000
+    },
+    "race_ethnicity": {
+      "unique_count": 5,
+      "top_value_counts": {
+        "group C": 310,
+        "group D": 262,
+        "group B": 198,
+        "group E": 139,
+        "group A": 91
+      },
+      "mode": "group C",
+      "total_non_null": 1000
+    },
+    "parental_education": {
+      "unique_count": 6,
+      "top_value_counts": {
+        "some college": 231,
+        "associate's degree": 212,
+        "high school": 204,
+        "bachelor's degree": 172,
+        "some high school": 108,
+        "master's degree": 73
+      },
+      "mode": "some college",
+      "total_non_null": 1000
+    },
+    "lunch": {
+      "unique_count": 2,
+      "top_value_counts": {
+        "standard": 657,
+        "free/reduced": 343
+      },
+      "mode": "standard",
+      "total_non_null": 1000
+    },
+    "test_preparation": {
+      "unique_count": 2,
+      "top_value_counts": {
+        "none": 662,
+        "completed": 338
+      },
+      "mode": "none",
+      "total_non_null": 1000
+    },
+    "grade": {
+      "unique_count": 5,
+      "top_value_counts": {
+        "C": 260,
+        "D": 223,
+        "B": 216,
+        "F": 193,
+        "A": 108
+      },
+      "mode": "C",
+      "total_non_null": 1000
+    }
+  },
+  "target_aware_analysis": {
+    "target_col": "grade",
+    "target_type": "categorical",
+    "class_distribution": {
+      "C": 26.0,
+      "D": 22.3,
+      "B": 21.6,
+      "F": 19.3,
+      "A": 10.8
+    },
+    "group_means_of_numeric_cols": {
+      "student_id": {
+        "A": 519.9167,
+        "B": 507.0231,
+        "C": 492.15,
+        "D": 502.6726,
+        "F": 491.0725
+      },
+      "math_score": {
+        "A": 87.7407,
+        "B": 74.4583,
+        "C": 65.5308,
+        "D": 55.2197,
+        "F": 41.6736
+      },
+      "reading_score": {
+        "A": 87.5,
+        "B": 76.1667,
+        "C": 66.6692,
+        "D": 55.5605,
+        "F": 41.8705
+      },
+      "writing_score": {
+        "A": 85.5833,
+        "B": 73.0417,
+        "C": 63.7731,
+        "D": 55.3901,
+        "F": 41.5907
+      }
+    }
+  },
+  "visualization_recommendation": [
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "student_id"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'student_id'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "math_score"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'math_score'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "reading_score"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'reading_score'."
+    },
+    {
+      "chart_type": "numeric_histogram",
+      "columns": [
+        "writing_score"
+      ],
+      "rationale": "Inspect the distribution of numeric column 'writing_score'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "gender"
+      ],
+      "rationale": "Show the frequency of categories in 'gender'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "race_ethnicity"
+      ],
+      "rationale": "Show the frequency of categories in 'race_ethnicity'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "parental_education"
+      ],
+      "rationale": "Show the frequency of categories in 'parental_education'."
+    },
+    {
+      "chart_type": "categorical_bar",
+      "columns": [
+        "lunch"
+      ],
+      "rationale": "Show the frequency of categories in 'lunch'."
+    },
+    {
+      "chart_type": "correlation_heatmap",
+      "columns": [
+        "student_id",
+        "math_score",
+        "reading_score",
+        "writing_score"
+      ],
+      "rationale": "Reveal linear relationships between all numeric features."
+    },
+    {
+      "chart_type": "target_distribution_bar",
+      "columns": [
+        "grade"
+      ],
+      "rationale": "Show class balance for target column 'grade'."
+    },
+    {
+      "chart_type": "box_plot_by_target",
+      "columns": [
+        "student_id",
+        "grade"
+      ],
+      "rationale": "Box plot of 'student_id' grouped by target 'grade'."
+    },
+    {
+      "chart_type": "box_plot_by_target",
+      "columns": [
+        "math_score",
+        "grade"
+      ],
+      "rationale": "Box plot of 'math_score' grouped by target 'grade'."
+    },
+    {
+      "chart_type": "box_plot_by_target",
+      "columns": [
+        "reading_score",
+        "grade"
+      ],
+      "rationale": "Box plot of 'reading_score' grouped by target 'grade'."
+    }
+  ],
+  "chart_generation": {
+    "chart_paths": [
+      "outputs/students_performance/rule/charts/students_performance/rule/hist_student_id.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/hist_math_score.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/hist_reading_score.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/hist_writing_score.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/catbar_gender.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/catbar_race_ethnicity.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/catbar_parental_education.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/catbar_lunch.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/correlation_heatmap.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/target_dist_grade.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/box_student_id_by_grade.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/box_math_score_by_grade.png",
+      "outputs/students_performance/rule/charts/students_performance/rule/box_reading_score_by_grade.png"
+    ],
+    "chart_count": 13
+  },
+  "insight_generation": {
+    "insights": [
+      "The dataset 'students_performance' contains 1,000 rows and 10 columns.",
+      "No missing values were detected; the dataset appears complete.",
+      "No duplicate rows were found.",
+      "Strongest correlation: 'math_score' \u2194 'writing_score' (r=0.795). Multicollinearity may affect linear models.",
+      "No numeric column has more than 5% IQR-flagged outliers.",
+      "Target 'grade' is relatively balanced across classes.",
+      "13 visualizations were recommended to aid exploratory analysis.",
+      "No major data quality issues (missing values, duplicates, or heavy outliers) found."
+    ],
+    "insight_count": 8
+  }
+}

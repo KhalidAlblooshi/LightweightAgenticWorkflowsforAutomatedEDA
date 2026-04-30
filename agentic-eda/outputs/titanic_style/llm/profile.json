@@ -1,0 +1,129 @@
+{
+  "dataset_name": "titanic_style",
+  "n_rows": 800,
+  "n_cols": 11,
+  "numeric_columns": [
+    "PassengerId",
+    "Survived",
+    "Pclass",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare"
+  ],
+  "categorical_columns": [
+    "Name",
+    "Sex",
+    "Cabin",
+    "Embarked"
+  ],
+  "datetime_columns": [],
+  "missing_counts": {
+    "PassengerId": 0,
+    "Survived": 0,
+    "Pclass": 0,
+    "Name": 0,
+    "Sex": 0,
+    "Age": 163,
+    "SibSp": 0,
+    "Parch": 0,
+    "Fare": 0,
+    "Cabin": 615,
+    "Embarked": 1
+  },
+  "missing_pct": {
+    "PassengerId": 0.0,
+    "Survived": 0.0,
+    "Pclass": 0.0,
+    "Name": 0.0,
+    "Sex": 0.0,
+    "Age": 20.38,
+    "SibSp": 0.0,
+    "Parch": 0.0,
+    "Fare": 0.0,
+    "Cabin": 76.88,
+    "Embarked": 0.12
+  },
+  "dtypes": {
+    "PassengerId": "int64",
+    "Survived": "int64",
+    "Pclass": "int64",
+    "Name": "str",
+    "Sex": "str",
+    "Age": "float64",
+    "SibSp": "int64",
+    "Parch": "int64",
+    "Fare": "float64",
+    "Cabin": "str",
+    "Embarked": "str"
+  },
+  "sample_rows": [
+    {
+      "PassengerId": "1",
+      "Survived": "0",
+      "Pclass": "3",
+      "Name": "Braund, Mr. Owen Harris",
+      "Sex": "male",
+      "Age": "22.0",
+      "SibSp": "1",
+      "Parch": "0",
+      "Fare": "7.25",
+      "Cabin": "",
+      "Embarked": "S"
+    },
+    {
+      "PassengerId": "2",
+      "Survived": "1",
+      "Pclass": "1",
+      "Name": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)",
+      "Sex": "female",
+      "Age": "38.0",
+      "SibSp": "1",
+      "Parch": "0",
+      "Fare": "71.2833",
+      "Cabin": "C85",
+      "Embarked": "C"
+    },
+    {
+      "PassengerId": "3",
+      "Survived": "1",
+      "Pclass": "3",
+      "Name": "Heikkinen, Miss. Laina",
+      "Sex": "female",
+      "Age": "26.0",
+      "SibSp": "0",
+      "Parch": "0",
+      "Fare": "7.925",
+      "Cabin": "",
+      "Embarked": "S"
+    },
+    {
+      "PassengerId": "4",
+      "Survived": "1",
+      "Pclass": "1",
+      "Name": "Futrelle, Mrs. Jacques Heath (Lily May Peel)",
+      "Sex": "female",
+      "Age": "35.0",
+      "SibSp": "1",
+      "Parch": "0",
+      "Fare": "53.1",
+      "Cabin": "C123",
+      "Embarked": "S"
+    },
+    {
+      "PassengerId": "5",
+      "Survived": "0",
+      "Pclass": "3",
+      "Name": "Allen, Mr. William Henry",
+      "Sex": "male",
+      "Age": "35.0",
+      "SibSp": "0",
+      "Parch": "0",
+      "Fare": "8.05",
+      "Cabin": "",
+      "Embarked": "S"
+    }
+  ],
+  "has_likely_target": true,
+  "likely_target_col": "Survived"
+}
