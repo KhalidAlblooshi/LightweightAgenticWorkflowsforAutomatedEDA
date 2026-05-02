@@ -1,0 +1,14 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Ignore virtual environment directories and all nested contents
+.venv/
+.venv/**
+**/.venv/
+**/.venv/**
+
+# Python cache
+**/__pycache__/
+*.pyc
