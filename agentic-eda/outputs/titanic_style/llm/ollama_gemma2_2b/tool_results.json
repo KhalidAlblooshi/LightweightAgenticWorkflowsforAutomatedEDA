@@ -1,0 +1,766 @@
+{
+  "dataset_overview": {
+    "row_count": 891,
+    "column_count": 11,
+    "numeric_column_count": 7,
+    "categorical_column_count": 4,
+    "memory_usage_bytes": 242101,
+    "column_types": {
+      "PassengerId": "float64",
+      "Pclass": "float64",
+      "Name": "str",
+      "Sex": "str",
+      "Age": "float64",
+      "SibSp": "float64",
+      "Parch": "float64",
+      "Fare": "float64",
+      "Embarked": "str",
+      "Survived": "float64",
+      "Cabin": "str"
+    },
+    "sample_rows": [
+      {
+        "PassengerId": 1.0,
+        "Pclass": 3.0,
+        "Name": "Braund, Mr. Owen Harris",
+        "Sex": "male",
+        "Age": 22.0,
+        "SibSp": 1.0,
+        "Parch": 0.0,
+        "Fare": 7.25,
+        "Embarked": "S",
+        "Survived": 0.0,
+        "Cabin": NaN
+      },
+      {
+        "PassengerId": 2.0,
+        "Pclass": 1.0,
+        "Name": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)",
+        "Sex": "female",
+        "Age": 38.0,
+        "SibSp": 1.0,
+        "Parch": 0.0,
+        "Fare": 71.2833,
+        "Embarked": "C",
+        "Survived": 1.0,
+        "Cabin": "C85"
+      },
+      {
+        "PassengerId": 3.0,
+        "Pclass": 3.0,
+        "Name": "Heikkinen, Miss. Laina",
+        "Sex": "female",
+        "Age": 26.0,
+        "SibSp": 0.0,
+        "Parch": 0.0,
+        "Fare": 7.925,
+        "Embarked": "S",
+        "Survived": 1.0,
+        "Cabin": NaN
+      },
+      {
+        "PassengerId": 4.0,
+        "Pclass": 1.0,
+        "Name": "Futrelle, Mrs. Jacques Heath (Lily May Peel)",
+        "Sex": "female",
+        "Age": 35.0,
+        "SibSp": 1.0,
+        "Parch": 0.0,
+        "Fare": 53.1,
+        "Embarked": "S",
+        "Survived": 1.0,
+        "Cabin": "C123"
+      },
+      {
+        "PassengerId": 5.0,
+        "Pclass": 3.0,
+        "Name": "Allen, Mr. William Henry",
+        "Sex": "male",
+        "Age": 35.0,
+        "SibSp": 0.0,
+        "Parch": 0.0,
+        "Fare": 8.05,
+        "Embarked": "S",
+        "Survived": 0.0,
+        "Cabin": NaN
+      }
+    ]
+  },
+  "missing_value_analysis": {
+    "total_missing_cells": 957,
+    "missing_cell_percentage": 9.764309764309765,
+    "columns_with_missing": [
+      "Cabin",
+      "Age",
+      "Embarked",
+      "Fare",
+      "Pclass",
+      "Sex",
+      "Parch",
+      "PassengerId",
+      "Name",
+      "SibSp",
+      "Survived"
+    ],
+    "top_missing_columns": [
+      {
+        "column": "Cabin",
+        "missing_count": 687,
+        "missing_percentage": 77.10437710437711
+      },
+      {
+        "column": "Age",
+        "missing_count": 186,
+        "missing_percentage": 20.875420875420875
+      },
+      {
+        "column": "Embarked",
+        "missing_count": 14,
+        "missing_percentage": 1.5712682379349048
+      },
+      {
+        "column": "Fare",
+        "missing_count": 13,
+        "missing_percentage": 1.4590347923681257
+      },
+      {
+        "column": "Pclass",
+        "missing_count": 10,
+        "missing_percentage": 1.122334455667789
+      },
+      {
+        "column": "Sex",
+        "missing_count": 9,
+        "missing_percentage": 1.0101010101010102
+      },
+      {
+        "column": "Parch",
+        "missing_count": 9,
+        "missing_percentage": 1.0101010101010102
+      },
+      {
+        "column": "PassengerId",
+        "missing_count": 8,
+        "missing_percentage": 0.8978675645342313
+      },
+      {
+        "column": "Name",
+        "missing_count": 7,
+        "missing_percentage": 0.7856341189674524
+      },
+      {
+        "column": "SibSp",
+        "missing_count": 7,
+        "missing_percentage": 0.7856341189674524
+      },
+      {
+        "column": "Survived",
+        "missing_count": 7,
+        "missing_percentage": 0.7856341189674524
+      }
+    ]
+  },
+  "duplicate_analysis": {
+    "duplicate_rows": 0,
+    "duplicate_percentage": 0.0,
+    "duplicate_row_indices_sample": []
+  },
+  "numeric_summary": {
+    "numeric_column_count": 6,
+    "excluded_identifier_like_columns": [
+      "PassengerId"
+    ],
+    "column_summaries": [
+      {
+        "column": "Pclass",
+        "count": 881,
+        "mean": 2.3132803632236096,
+        "std": 0.8336220392130274,
+        "min": 1.0,
+        "q1": 2.0,
+        "median": 3.0,
+        "q3": 3.0,
+        "max": 3.0,
+        "skewness": -0.6395165793021739,
+        "kurtosis": -1.2621219678678204
+      },
+      {
+        "column": "Age",
+        "count": 705,
+        "mean": 29.737120567375882,
+        "std": 14.567159567392103,
+        "min": 0.42,
+        "q1": 20.5,
+        "median": 28.0,
+        "q3": 38.0,
+        "max": 80.0,
+        "skewness": 0.3903459790247239,
+        "kurtosis": 0.15456084968903205
+      },
+      {
+        "column": "SibSp",
+        "count": 884,
+        "mean": 0.5113122171945701,
+        "std": 1.0710262633957273,
+        "min": 0.0,
+        "q1": 0.0,
+        "median": 0.0,
+        "q3": 1.0,
+        "max": 8.0,
+        "skewness": 3.6672854475380166,
+        "kurtosis": 17.87134152401437
+      },
+      {
+        "column": "Parch",
+        "count": 882,
+        "mean": 0.3832199546485261,
+        "std": 0.8075070979251786,
+        "min": 0.0,
+        "q1": 0.0,
+        "median": 0.0,
+        "q3": 0.0,
+        "max": 6.0,
+        "skewness": 2.7434024645279242,
+        "kurtosis": 9.71372768990861
+      },
+      {
+        "column": "Fare",
+        "count": 878,
+        "mean": 32.45401890660592,
+        "std": 49.99829700743039,
+        "min": 0.0,
+        "q1": 7.925,
+        "median": 14.4583,
+        "q3": 31.275,
+        "max": 512.3292,
+        "skewness": 4.7480082021411265,
+        "kurtosis": 32.75798672589679
+      },
+      {
+        "column": "Survived",
+        "count": 884,
+        "mean": 0.38574660633484165,
+        "std": 0.4870467166867626,
+        "min": 0.0,
+        "q1": 0.0,
+        "median": 0.0,
+        "q3": 1.0,
+        "max": 1.0,
+        "skewness": 0.4694337014812748,
+        "kurtosis": -1.779631999913589
+      }
+    ]
+  },
+  "categorical_summary": {
+    "categorical_column_count": 3,
+    "excluded_identifier_like_columns": [
+      "Name"
+    ],
+    "column_summaries": [
+      {
+        "column": "Sex",
+        "unique_count": 3,
+        "top_categories": [
+          {
+            "category": "male",
+            "count": 571,
+            "percentage": 64.08529741863074
+          },
+          {
+            "category": "female",
+            "count": 311,
+            "percentage": 34.90460157126824
+          },
+          {
+            "category": "<NA>",
+            "count": 9,
+            "percentage": 1.0101010101010102
+          }
+        ]
+      },
+      {
+        "column": "Embarked",
+        "unique_count": 4,
+        "top_categories": [
+          {
+            "category": "S",
+            "count": 634,
+            "percentage": 71.15600448933782
+          },
+          {
+            "category": "C",
+            "count": 166,
+            "percentage": 18.6307519640853
+          },
+          {
+            "category": "Q",
+            "count": 77,
+            "percentage": 8.641975308641975
+          },
+          {
+            "category": "<NA>",
+            "count": 14,
+            "percentage": 1.5712682379349048
+          }
+        ]
+      },
+      {
+        "column": "Cabin",
+        "unique_count": 148,
+        "top_categories": [
+          {
+            "category": "<NA>",
+            "count": 687,
+            "percentage": 77.10437710437711
+          },
+          {
+            "category": "G6",
+            "count": 4,
+            "percentage": 0.44893378226711567
+          },
+          {
+            "category": "C23 C25 C27",
+            "count": 4,
+            "percentage": 0.44893378226711567
+          },
+          {
+            "category": "B96 B98",
+            "count": 4,
+            "percentage": 0.44893378226711567
+          },
+          {
+            "category": "F33",
+            "count": 3,
+            "percentage": 0.33670033670033667
+          },
+          {
+            "category": "E101",
+            "count": 3,
+            "percentage": 0.33670033670033667
+          },
+          {
+            "category": "F2",
+            "count": 3,
+            "percentage": 0.33670033670033667
+          },
+          {
+            "category": "D",
+            "count": 3,
+            "percentage": 0.33670033670033667
+          },
+          {
+            "category": "C22 C26",
+            "count": 3,
+            "percentage": 0.33670033670033667
+          },
+          {
+            "category": "C123",
+            "count": 2,
+            "percentage": 0.22446689113355783
+          }
+        ]
+      }
+    ]
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "Pclass": {
+        "Pclass": 1.0,
+        "Age": -0.3786,
+        "SibSp": 0.0819,
+        "Parch": 0.0113,
+        "Fare": -0.5488,
+        "Survived": -0.3333
+      },
+      "Age": {
+        "Pclass": -0.3786,
+        "Age": 1.0,
+        "SibSp": -0.3083,
+        "Parch": -0.1893,
+        "Fare": 0.102,
+        "Survived": -0.0752
+      },
+      "SibSp": {
+        "Pclass": 0.0819,
+        "Age": -0.3083,
+        "SibSp": 1.0,
+        "Parch": 0.4058,
+        "Fare": 0.1583,
+        "Survived": -0.0378
+      },
+      "Parch": {
+        "Pclass": 0.0113,
+        "Age": -0.1893,
+        "SibSp": 0.4058,
+        "Parch": 1.0,
+        "Fare": 0.2154,
+        "Survived": 0.0824
+      },
+      "Fare": {
+        "Pclass": -0.5488,
+        "Age": 0.102,
+        "SibSp": 0.1583,
+        "Parch": 0.2154,
+        "Fare": 1.0,
+        "Survived": 0.2585
+      },
+      "Survived": {
+        "Pclass": -0.3333,
+        "Age": -0.0752,
+        "SibSp": -0.0378,
+        "Parch": 0.0824,
+        "Fare": 0.2585,
+        "Survived": 1.0
+      }
+    },
+    "strongest_pair": {
+      "feature_1": "Pclass",
+      "feature_2": "Fare",
+      "correlation": -0.5487756529837824,
+      "abs_correlation": 0.5487756529837824
+    },
+    "top_pairs": [
+      {
+        "feature_1": "Pclass",
+        "feature_2": "Fare",
+        "correlation": -0.5487756529837824,
+        "abs_correlation": 0.5487756529837824
+      },
+      {
+        "feature_1": "SibSp",
+        "feature_2": "Parch",
+        "correlation": 0.4057594215530221,
+        "abs_correlation": 0.4057594215530221
+      },
+      {
+        "feature_1": "Pclass",
+        "feature_2": "Age",
+        "correlation": -0.3786048059966862,
+        "abs_correlation": 0.3786048059966862
+      },
+      {
+        "feature_1": "Pclass",
+        "feature_2": "Survived",
+        "correlation": -0.3332957242990525,
+        "abs_correlation": 0.3332957242990525
+      },
+      {
+        "feature_1": "Age",
+        "feature_2": "SibSp",
+        "correlation": -0.30825256747297647,
+        "abs_correlation": 0.30825256747297647
+      },
+      {
+        "feature_1": "Fare",
+        "feature_2": "Survived",
+        "correlation": 0.25854094731727373,
+        "abs_correlation": 0.25854094731727373
+      },
+      {
+        "feature_1": "Parch",
+        "feature_2": "Fare",
+        "correlation": 0.21542628848216155,
+        "abs_correlation": 0.21542628848216155
+      },
+      {
+        "feature_1": "Age",
+        "feature_2": "Parch",
+        "correlation": -0.1893154236751759,
+        "abs_correlation": 0.1893154236751759
+      },
+      {
+        "feature_1": "SibSp",
+        "feature_2": "Fare",
+        "correlation": 0.1582675960953822,
+        "abs_correlation": 0.1582675960953822
+      },
+      {
+        "feature_1": "Age",
+        "feature_2": "Fare",
+        "correlation": 0.10197169711119473,
+        "abs_correlation": 0.10197169711119473
+      }
+    ],
+    "excluded_identifier_like_columns": [
+      "PassengerId"
+    ]
+  },
+  "outlier_detection": {
+    "ranked_outlier_columns": [
+      {
+        "column": "Parch",
+        "lower_bound": 0.0,
+        "upper_bound": 0.0,
+        "outlier_count": 212,
+        "outlier_percentage": 24.03628117913832
+      },
+      {
+        "column": "Fare",
+        "lower_bound": -27.099999999999998,
+        "upper_bound": 66.3,
+        "outlier_count": 116,
+        "outlier_percentage": 13.211845102505695
+      },
+      {
+        "column": "SibSp",
+        "lower_bound": -1.5,
+        "upper_bound": 2.5,
+        "outlier_count": 44,
+        "outlier_percentage": 4.97737556561086
+      },
+      {
+        "column": "Age",
+        "lower_bound": -5.75,
+        "upper_bound": 64.25,
+        "outlier_count": 11,
+        "outlier_percentage": 1.5602836879432624
+      },
+      {
+        "column": "Pclass",
+        "lower_bound": 0.5,
+        "upper_bound": 4.5,
+        "outlier_count": 0,
+        "outlier_percentage": 0.0
+      },
+      {
+        "column": "Survived",
+        "lower_bound": -1.5,
+        "upper_bound": 2.5,
+        "outlier_count": 0,
+        "outlier_percentage": 0.0
+      }
+    ],
+    "columns_with_outliers": [
+      "Parch",
+      "Fare",
+      "SibSp",
+      "Age"
+    ],
+    "excluded_identifier_like_columns": [
+      "PassengerId"
+    ]
+  },
+  "target_aware_analysis": {
+    "target_column": "Survived",
+    "analysis_type": "categorical_target",
+    "findings": [
+      "Target class distribution: 0.0=543, 1.0=341.",
+      "ANOVA for 'Pclass' across target 'Survived' groups: p-value=4.052e-24.",
+      "ANOVA for 'Age' across target 'Survived' groups: p-value=0.04677.",
+      "ANOVA for 'SibSp' across target 'Survived' groups: p-value=0.2635.",
+      "ANOVA for 'Parch' across target 'Survived' groups: p-value=0.01474.",
+      "ANOVA for 'Fare' across target 'Survived' groups: p-value=9.085e-15."
+    ],
+    "numeric_features_considered": [
+      "Pclass",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Fare"
+    ],
+    "categorical_features_considered": [
+      "Name",
+      "Sex",
+      "Embarked",
+      "Cabin"
+    ]
+  },
+  "visualization_recommendation": {
+    "recommendation_count": 12,
+    "recommendations": [
+      {
+        "chart_type": "correlation_heatmap",
+        "x": "numeric_features",
+        "y": "numeric_features",
+        "title": "Correlation heatmap",
+        "reason": "Multiple numeric columns are available.",
+        "priority": 1
+      },
+      {
+        "chart_type": "missing_bar",
+        "x": "column",
+        "y": "missing_count",
+        "title": "Missing values by column",
+        "reason": "Columns with missing values were detected.",
+        "priority": 1
+      },
+      {
+        "chart_type": "scatter",
+        "x": "Pclass",
+        "y": "Fare",
+        "title": "Strongest numeric correlation",
+        "reason": "Useful for validating linear trend strength.",
+        "priority": 1
+      },
+      {
+        "chart_type": "bar",
+        "x": "Embarked",
+        "y": "count",
+        "title": "Category frequencies for Embarked",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "bar",
+        "x": "Sex",
+        "y": "count",
+        "title": "Category frequencies for Sex",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "Age",
+        "y": null,
+        "title": "Distribution of Age",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "Fare",
+        "y": null,
+        "title": "Distribution of Fare",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "Parch",
+        "y": null,
+        "title": "Distribution of Parch",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "Pclass",
+        "y": null,
+        "title": "Distribution of Pclass",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "SibSp",
+        "y": null,
+        "title": "Distribution of SibSp",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "target_box",
+        "x": "Survived",
+        "y": "Pclass",
+        "title": "Pclass by target (Survived)",
+        "reason": "Highlights class-wise numeric spread.",
+        "priority": 3
+      },
+      {
+        "chart_type": "target_box",
+        "x": "Survived",
+        "y": "Age",
+        "title": "Age by target (Survived)",
+        "reason": "Highlights class-wise numeric spread.",
+        "priority": 3
+      }
+    ],
+    "filter_diagnostics": {
+      "excluded_identifier_like_columns": [
+        "Name",
+        "PassengerId"
+      ],
+      "excluded_high_cardinality_categorical_columns": [
+        "Cabin"
+      ],
+      "excluded_user_avoid_columns": [],
+      "numeric_candidates_used": [
+        "Pclass",
+        "Age",
+        "Fare",
+        "SibSp",
+        "Parch"
+      ],
+      "categorical_candidates_used": [
+        "Sex",
+        "Embarked"
+      ]
+    }
+  },
+  "chart_generation": {
+    "charts_generated": 12,
+    "chart_paths": [
+      "charts\\correlation_heatmap.png",
+      "charts\\missing_values_bar.png",
+      "charts\\scatter_Pclass_vs_Fare.png",
+      "charts\\catbar_Embarked.png",
+      "charts\\catbar_Sex.png",
+      "charts\\hist_Age.png",
+      "charts\\hist_Fare.png",
+      "charts\\hist_Parch.png",
+      "charts\\hist_Pclass.png",
+      "charts\\hist_SibSp.png",
+      "charts\\target_box_Pclass_by_Survived.png",
+      "charts\\target_box_Age_by_Survived.png"
+    ],
+    "plot_failures": []
+  },
+  "insight_generation": {
+    "insight_count": 10,
+    "raw_insight_count": 10,
+    "redundant_insight_count": 0,
+    "redundancy_ratio": 0.0,
+    "insights": [
+      {
+        "source_tool": "dataset_overview",
+        "insight": "Dataset contains 891 rows and 11 columns.",
+        "insight_id": 1
+      },
+      {
+        "source_tool": "missing_value_analysis",
+        "insight": "Missing data affects 957 cells (9.76%); most impacted columns: Cabin (687), Age (186), Embarked (14).",
+        "insight_id": 2
+      },
+      {
+        "source_tool": "numeric_summary",
+        "insight": "Pclass has mean 2.313, std 0.834, and spans [1.000, 3.000].",
+        "insight_id": 3
+      },
+      {
+        "source_tool": "numeric_summary",
+        "insight": "Age has mean 29.737, std 14.567, and spans [0.420, 80.000].",
+        "insight_id": 4
+      },
+      {
+        "source_tool": "numeric_summary",
+        "insight": "SibSp has mean 0.511, std 1.071, and spans [0.000, 8.000].",
+        "insight_id": 5
+      },
+      {
+        "source_tool": "correlation_analysis",
+        "insight": "Strongest absolute correlation is between Pclass and Fare (r=-0.549).",
+        "insight_id": 6
+      },
+      {
+        "source_tool": "outlier_detection",
+        "insight": "Column Parch has the highest outlier load (212 rows, 24.04%).",
+        "insight_id": 7
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "Target class distribution: 0.0=543, 1.0=341.",
+        "insight_id": 8
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "ANOVA for 'Pclass' across target 'Survived' groups: p-value=4.052e-24.",
+        "insight_id": 9
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "ANOVA for 'Age' across target 'Survived' groups: p-value=0.04677.",
+        "insight_id": 10
+      }
+    ]
+  }
+}

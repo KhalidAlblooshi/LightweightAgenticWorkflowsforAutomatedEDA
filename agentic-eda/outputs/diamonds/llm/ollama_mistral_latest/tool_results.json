@@ -1,0 +1,825 @@
+{
+  "dataset_overview": {
+    "row_count": 53940,
+    "column_count": 10,
+    "numeric_column_count": 7,
+    "categorical_column_count": 3,
+    "memory_usage_bytes": 11494399,
+    "column_types": {
+      "carat": "float64",
+      "cut": "str",
+      "color": "str",
+      "clarity": "str",
+      "depth": "float64",
+      "table": "float64",
+      "price": "float64",
+      "x": "float64",
+      "y": "float64",
+      "z": "float64"
+    },
+    "sample_rows": [
+      {
+        "carat": 0.23,
+        "cut": "Ideal",
+        "color": "E",
+        "clarity": "SI2",
+        "depth": NaN,
+        "table": 55.0,
+        "price": 326.0,
+        "x": 3.95,
+        "y": 3.98,
+        "z": 2.43
+      },
+      {
+        "carat": 0.21,
+        "cut": "Premium",
+        "color": "E",
+        "clarity": "SI1",
+        "depth": 59.8,
+        "table": 61.0,
+        "price": 326.0,
+        "x": 3.89,
+        "y": 3.84,
+        "z": 2.31
+      },
+      {
+        "carat": 0.23,
+        "cut": "Good",
+        "color": "E",
+        "clarity": "VS1",
+        "depth": 56.9,
+        "table": 65.0,
+        "price": 327.0,
+        "x": 4.05,
+        "y": 4.07,
+        "z": 2.31
+      },
+      {
+        "carat": 0.29,
+        "cut": "Premium",
+        "color": "I",
+        "clarity": "VS2",
+        "depth": 62.4,
+        "table": 58.0,
+        "price": 334.0,
+        "x": 4.2,
+        "y": 4.23,
+        "z": 2.63
+      },
+      {
+        "carat": 0.31,
+        "cut": "Good",
+        "color": "J",
+        "clarity": "SI2",
+        "depth": 63.3,
+        "table": 58.0,
+        "price": 335.0,
+        "x": 4.34,
+        "y": 4.35,
+        "z": 2.75
+      }
+    ]
+  },
+  "missing_value_analysis": {
+    "total_missing_cells": 2690,
+    "missing_cell_percentage": 0.49870226177233967,
+    "columns_with_missing": [
+      "cut",
+      "depth",
+      "y",
+      "z",
+      "table",
+      "x",
+      "carat",
+      "color",
+      "clarity",
+      "price"
+    ],
+    "top_missing_columns": [
+      {
+        "column": "cut",
+        "missing_count": 287,
+        "missing_percentage": 0.5320726733407489
+      },
+      {
+        "column": "depth",
+        "missing_count": 284,
+        "missing_percentage": 0.5265109380793475
+      },
+      {
+        "column": "y",
+        "missing_count": 281,
+        "missing_percentage": 0.5209492028179459
+      },
+      {
+        "column": "z",
+        "missing_count": 280,
+        "missing_percentage": 0.5190952910641453
+      },
+      {
+        "column": "table",
+        "missing_count": 270,
+        "missing_percentage": 0.5005561735261401
+      },
+      {
+        "column": "x",
+        "missing_count": 265,
+        "missing_percentage": 0.49128661475713753
+      },
+      {
+        "column": "carat",
+        "missing_count": 261,
+        "missing_percentage": 0.4838709677419355
+      },
+      {
+        "column": "color",
+        "missing_count": 261,
+        "missing_percentage": 0.4838709677419355
+      },
+      {
+        "column": "clarity",
+        "missing_count": 257,
+        "missing_percentage": 0.4764553207267334
+      },
+      {
+        "column": "price",
+        "missing_count": 244,
+        "missing_percentage": 0.4523544679273267
+      }
+    ]
+  },
+  "numeric_summary": {
+    "numeric_column_count": 7,
+    "excluded_identifier_like_columns": [],
+    "column_summaries": [
+      {
+        "column": "carat",
+        "count": 53679,
+        "mean": 0.7979388587715867,
+        "std": 0.47394168313821217,
+        "min": 0.2,
+        "q1": 0.4,
+        "median": 0.7,
+        "q3": 1.04,
+        "max": 5.01,
+        "skewness": 1.1164571968117658,
+        "kurtosis": 1.2581068225853222
+      },
+      {
+        "column": "depth",
+        "count": 53656,
+        "mean": 61.7500055911734,
+        "std": 1.4326645862081022,
+        "min": 43.0,
+        "q1": 61.0,
+        "median": 61.8,
+        "q3": 62.5,
+        "max": 79.0,
+        "skewness": -0.07944442418927332,
+        "kurtosis": 5.759021039880167
+      },
+      {
+        "column": "table",
+        "count": 53670,
+        "mean": 57.457814421464505,
+        "std": 2.2347795105973276,
+        "min": 43.0,
+        "q1": 56.0,
+        "median": 57.0,
+        "q3": 59.0,
+        "max": 95.0,
+        "skewness": 0.7970246162898166,
+        "kurtosis": 2.8100003608131683
+      },
+      {
+        "column": "price",
+        "count": 53696,
+        "mean": 3933.2648428188318,
+        "std": 3989.471438848374,
+        "min": 326.0,
+        "q1": 951.0,
+        "median": 2401.0,
+        "q3": 5324.0,
+        "max": 18823.0,
+        "skewness": 1.6178566085211463,
+        "kurtosis": 2.175025415905565
+      },
+      {
+        "column": "x",
+        "count": 53675,
+        "mean": 5.731293153237075,
+        "std": 1.1219098180966935,
+        "min": 0.0,
+        "q1": 4.71,
+        "median": 5.7,
+        "q3": 6.54,
+        "max": 10.74,
+        "skewness": 0.3781621896014413,
+        "kurtosis": -0.6184109313853425
+      },
+      {
+        "column": "y",
+        "count": 53659,
+        "mean": 5.734997111388584,
+        "std": 1.14241156808124,
+        "min": 0.0,
+        "q1": 4.72,
+        "median": 5.71,
+        "q3": 6.54,
+        "max": 58.9,
+        "skewness": 2.4429427648609137,
+        "kurtosis": 91.59469566278545
+      },
+      {
+        "column": "z",
+        "count": 53660,
+        "mean": 3.538877562430115,
+        "std": 0.7058991985530035,
+        "min": 0.0,
+        "q1": 2.91,
+        "median": 3.53,
+        "q3": 4.04,
+        "max": 31.8,
+        "skewness": 1.5272465713764054,
+        "kurtosis": 47.27535755466508
+      }
+    ]
+  },
+  "categorical_summary": {
+    "categorical_column_count": 3,
+    "excluded_identifier_like_columns": [],
+    "column_summaries": [
+      {
+        "column": "cut",
+        "unique_count": 6,
+        "top_categories": [
+          {
+            "category": "Ideal",
+            "count": 21444,
+            "percentage": 39.75528364849833
+          },
+          {
+            "category": "Premium",
+            "count": 13723,
+            "percentage": 25.441230997404524
+          },
+          {
+            "category": "Very Good",
+            "count": 12005,
+            "percentage": 22.25621060437523
+          },
+          {
+            "category": "Good",
+            "count": 4875,
+            "percentage": 9.03781979977753
+          },
+          {
+            "category": "Fair",
+            "count": 1606,
+            "percentage": 2.9773822766036337
+          },
+          {
+            "category": "<NA>",
+            "count": 287,
+            "percentage": 0.5320726733407489
+          }
+        ]
+      },
+      {
+        "column": "color",
+        "unique_count": 8,
+        "top_categories": [
+          {
+            "category": "G",
+            "count": 11239,
+            "percentage": 20.836114200964033
+          },
+          {
+            "category": "E",
+            "count": 9751,
+            "percentage": 18.077493511308862
+          },
+          {
+            "category": "F",
+            "count": 9496,
+            "percentage": 17.604746014089727
+          },
+          {
+            "category": "H",
+            "count": 8254,
+            "percentage": 15.302187615869483
+          },
+          {
+            "category": "D",
+            "count": 6738,
+            "percentage": 12.491657397107897
+          },
+          {
+            "category": "I",
+            "count": 5405,
+            "percentage": 10.020393029291807
+          },
+          {
+            "category": "J",
+            "count": 2796,
+            "percentage": 5.183537263626251
+          },
+          {
+            "category": "<NA>",
+            "count": 261,
+            "percentage": 0.4838709677419355
+          }
+        ]
+      },
+      {
+        "column": "clarity",
+        "unique_count": 9,
+        "top_categories": [
+          {
+            "category": "SI1",
+            "count": 13009,
+            "percentage": 24.11753800519095
+          },
+          {
+            "category": "VS2",
+            "count": 12191,
+            "percentage": 22.60103819058213
+          },
+          {
+            "category": "SI2",
+            "count": 9152,
+            "percentage": 16.96700037078235
+          },
+          {
+            "category": "VS1",
+            "count": 8137,
+            "percentage": 15.085279940674823
+          },
+          {
+            "category": "VVS2",
+            "count": 5034,
+            "percentage": 9.332591768631813
+          },
+          {
+            "category": "VVS1",
+            "count": 3640,
+            "percentage": 6.748238783833889
+          },
+          {
+            "category": "IF",
+            "count": 1783,
+            "percentage": 3.3055246570263255
+          },
+          {
+            "category": "I1",
+            "count": 737,
+            "percentage": 1.3663329625509826
+          },
+          {
+            "category": "<NA>",
+            "count": 257,
+            "percentage": 0.4764553207267334
+          }
+        ]
+      }
+    ]
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "carat": {
+        "carat": 1.0,
+        "depth": 0.0288,
+        "table": 0.1815,
+        "price": 0.9215,
+        "x": 0.9751,
+        "y": 0.9515,
+        "z": 0.9532
+      },
+      "depth": {
+        "carat": 0.0288,
+        "depth": 1.0,
+        "table": -0.2959,
+        "price": -0.0103,
+        "x": -0.0251,
+        "y": -0.0294,
+        "z": 0.0951
+      },
+      "table": {
+        "carat": 0.1815,
+        "depth": -0.2959,
+        "table": 1.0,
+        "price": 0.1271,
+        "x": 0.1957,
+        "y": 0.1835,
+        "z": 0.1511
+      },
+      "price": {
+        "carat": 0.9215,
+        "depth": -0.0103,
+        "table": 0.1271,
+        "price": 1.0,
+        "x": 0.8844,
+        "y": 0.8653,
+        "z": 0.8611
+      },
+      "x": {
+        "carat": 0.9751,
+        "depth": -0.0251,
+        "table": 0.1957,
+        "price": 0.8844,
+        "x": 1.0,
+        "y": 0.9745,
+        "z": 0.9706
+      },
+      "y": {
+        "carat": 0.9515,
+        "depth": -0.0294,
+        "table": 0.1835,
+        "price": 0.8653,
+        "x": 0.9745,
+        "y": 1.0,
+        "z": 0.9516
+      },
+      "z": {
+        "carat": 0.9532,
+        "depth": 0.0951,
+        "table": 0.1511,
+        "price": 0.8611,
+        "x": 0.9706,
+        "y": 0.9516,
+        "z": 1.0
+      }
+    },
+    "strongest_pair": {
+      "feature_1": "carat",
+      "feature_2": "x",
+      "correlation": 0.9750541430183379,
+      "abs_correlation": 0.9750541430183379
+    },
+    "top_pairs": [
+      {
+        "feature_1": "carat",
+        "feature_2": "x",
+        "correlation": 0.9750541430183379,
+        "abs_correlation": 0.9750541430183379
+      },
+      {
+        "feature_1": "x",
+        "feature_2": "y",
+        "correlation": 0.974475570809623,
+        "abs_correlation": 0.974475570809623
+      },
+      {
+        "feature_1": "x",
+        "feature_2": "z",
+        "correlation": 0.9705679084703225,
+        "abs_correlation": 0.9705679084703225
+      },
+      {
+        "feature_1": "carat",
+        "feature_2": "z",
+        "correlation": 0.9531560908833918,
+        "abs_correlation": 0.9531560908833918
+      },
+      {
+        "feature_1": "y",
+        "feature_2": "z",
+        "correlation": 0.9516338174890775,
+        "abs_correlation": 0.9516338174890775
+      },
+      {
+        "feature_1": "carat",
+        "feature_2": "y",
+        "correlation": 0.9514616607253121,
+        "abs_correlation": 0.9514616607253121
+      },
+      {
+        "feature_1": "carat",
+        "feature_2": "price",
+        "correlation": 0.921501849947144,
+        "abs_correlation": 0.921501849947144
+      },
+      {
+        "feature_1": "price",
+        "feature_2": "x",
+        "correlation": 0.884413841230246,
+        "abs_correlation": 0.884413841230246
+      },
+      {
+        "feature_1": "price",
+        "feature_2": "y",
+        "correlation": 0.8652705828973908,
+        "abs_correlation": 0.8652705828973908
+      },
+      {
+        "feature_1": "price",
+        "feature_2": "z",
+        "correlation": 0.8610740905823309,
+        "abs_correlation": 0.8610740905823309
+      }
+    ],
+    "excluded_identifier_like_columns": []
+  },
+  "outlier_detection": {
+    "ranked_outlier_columns": [
+      {
+        "column": "price",
+        "lower_bound": -5608.5,
+        "upper_bound": 11883.5,
+        "outlier_count": 3523,
+        "outlier_percentage": 6.561010131108462
+      },
+      {
+        "column": "depth",
+        "lower_bound": 58.75,
+        "upper_bound": 64.75,
+        "outlier_count": 2530,
+        "outlier_percentage": 4.715222901446251
+      },
+      {
+        "column": "carat",
+        "lower_bound": -0.5599999999999999,
+        "upper_bound": 2.0,
+        "outlier_count": 1874,
+        "outlier_percentage": 3.491123158032005
+      },
+      {
+        "column": "table",
+        "lower_bound": 51.5,
+        "upper_bound": 63.5,
+        "outlier_count": 602,
+        "outlier_percentage": 1.121669461524129
+      },
+      {
+        "column": "z",
+        "lower_bound": 1.2150000000000003,
+        "upper_bound": 5.734999999999999,
+        "outlier_count": 49,
+        "outlier_percentage": 0.09131569139023482
+      },
+      {
+        "column": "x",
+        "lower_bound": 1.9649999999999999,
+        "upper_bound": 9.285,
+        "outlier_count": 32,
+        "outlier_percentage": 0.05961807172799254
+      },
+      {
+        "column": "y",
+        "lower_bound": 1.9899999999999993,
+        "upper_bound": 9.27,
+        "outlier_count": 29,
+        "outlier_percentage": 0.05404498779328724
+      }
+    ],
+    "columns_with_outliers": [
+      "price",
+      "depth",
+      "carat",
+      "table",
+      "z",
+      "x",
+      "y"
+    ],
+    "excluded_identifier_like_columns": []
+  },
+  "target_aware_analysis": {
+    "target_column": "price",
+    "analysis_type": "numeric_target",
+    "findings": [
+      "Target 'price' correlation with 'carat' is 0.922.",
+      "Target 'price' correlation with 'depth' is -0.010.",
+      "Target 'price' correlation with 'table' is 0.127.",
+      "Target 'price' correlation with 'x' is 0.884.",
+      "Target 'price' correlation with 'y' is 0.865.",
+      "Target 'price' correlation with 'z' is 0.861."
+    ],
+    "numeric_features_considered": [
+      "carat",
+      "depth",
+      "table",
+      "x",
+      "y",
+      "z"
+    ],
+    "categorical_features_considered": [
+      "cut",
+      "color",
+      "clarity"
+    ]
+  },
+  "visualization_recommendation": {
+    "recommendation_count": 14,
+    "recommendations": [
+      {
+        "chart_type": "correlation_heatmap",
+        "x": "numeric_features",
+        "y": "numeric_features",
+        "title": "Correlation heatmap",
+        "reason": "Multiple numeric columns are available.",
+        "priority": 1
+      },
+      {
+        "chart_type": "missing_bar",
+        "x": "column",
+        "y": "missing_count",
+        "title": "Missing values by column",
+        "reason": "Columns with missing values were detected.",
+        "priority": 1
+      },
+      {
+        "chart_type": "scatter",
+        "x": "carat",
+        "y": "x",
+        "title": "Strongest numeric correlation",
+        "reason": "Useful for validating linear trend strength.",
+        "priority": 1
+      },
+      {
+        "chart_type": "bar",
+        "x": "clarity",
+        "y": "count",
+        "title": "Category frequencies for clarity",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "bar",
+        "x": "color",
+        "y": "count",
+        "title": "Category frequencies for color",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "bar",
+        "x": "cut",
+        "y": "count",
+        "title": "Category frequencies for cut",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "carat",
+        "y": null,
+        "title": "Distribution of carat",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "depth",
+        "y": null,
+        "title": "Distribution of depth",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "table",
+        "y": null,
+        "title": "Distribution of table",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "x",
+        "y": null,
+        "title": "Distribution of x",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "y",
+        "y": null,
+        "title": "Distribution of y",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "histogram",
+        "x": "z",
+        "y": null,
+        "title": "Distribution of z",
+        "reason": "Numeric distribution overview.",
+        "priority": 2
+      },
+      {
+        "chart_type": "target_bar_mean",
+        "x": "color",
+        "y": "price",
+        "title": "Mean price by color",
+        "reason": "Target-aware comparison across categories.",
+        "priority": 3
+      },
+      {
+        "chart_type": "target_bar_mean",
+        "x": "cut",
+        "y": "price",
+        "title": "Mean price by cut",
+        "reason": "Target-aware comparison across categories.",
+        "priority": 3
+      }
+    ],
+    "filter_diagnostics": {
+      "excluded_identifier_like_columns": [],
+      "excluded_high_cardinality_categorical_columns": [],
+      "excluded_user_avoid_columns": [],
+      "numeric_candidates_used": [
+        "table",
+        "depth",
+        "carat",
+        "z",
+        "y",
+        "x",
+        "price"
+      ],
+      "categorical_candidates_used": [
+        "cut",
+        "color",
+        "clarity"
+      ]
+    }
+  },
+  "chart_generation": {
+    "charts_generated": 14,
+    "chart_paths": [
+      "charts\\correlation_heatmap.png",
+      "charts\\missing_values_bar.png",
+      "charts\\scatter_carat_vs_x.png",
+      "charts\\catbar_clarity.png",
+      "charts\\catbar_color.png",
+      "charts\\catbar_cut.png",
+      "charts\\hist_carat.png",
+      "charts\\hist_depth.png",
+      "charts\\hist_table.png",
+      "charts\\hist_x.png",
+      "charts\\hist_y.png",
+      "charts\\hist_z.png",
+      "charts\\target_mean_price_by_color.png",
+      "charts\\target_mean_price_by_cut.png"
+    ],
+    "plot_failures": []
+  },
+  "insight_generation": {
+    "insight_count": 10,
+    "raw_insight_count": 10,
+    "redundant_insight_count": 0,
+    "redundancy_ratio": 0.0,
+    "insights": [
+      {
+        "source_tool": "dataset_overview",
+        "insight": "Dataset contains 53940 rows and 10 columns.",
+        "insight_id": 1
+      },
+      {
+        "source_tool": "missing_value_analysis",
+        "insight": "Missing data affects 2690 cells (0.50%); most impacted columns: cut (287), depth (284), y (281).",
+        "insight_id": 2
+      },
+      {
+        "source_tool": "numeric_summary",
+        "insight": "carat has mean 0.798, std 0.474, and spans [0.200, 5.010].",
+        "insight_id": 3
+      },
+      {
+        "source_tool": "numeric_summary",
+        "insight": "depth has mean 61.750, std 1.433, and spans [43.000, 79.000].",
+        "insight_id": 4
+      },
+      {
+        "source_tool": "numeric_summary",
+        "insight": "table has mean 57.458, std 2.235, and spans [43.000, 95.000].",
+        "insight_id": 5
+      },
+      {
+        "source_tool": "correlation_analysis",
+        "insight": "Strongest absolute correlation is between carat and x (r=0.975).",
+        "insight_id": 6
+      },
+      {
+        "source_tool": "outlier_detection",
+        "insight": "Column price has the highest outlier load (3523 rows, 6.56%).",
+        "insight_id": 7
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "Target 'price' correlation with 'carat' is 0.922.",
+        "insight_id": 8
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "Target 'price' correlation with 'depth' is -0.010.",
+        "insight_id": 9
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "Target 'price' correlation with 'table' is 0.127.",
+        "insight_id": 10
+      }
+    ]
+  }
+}

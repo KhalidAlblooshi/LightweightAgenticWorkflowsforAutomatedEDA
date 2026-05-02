@@ -1,0 +1,16 @@
+metric,n_datasets,n_strategies,friedman_statistic,friedman_p_value,kendalls_w,kendalls_w_magnitude
+runtime_seconds,3,3,4.666667,0.096972,0.777778,large
+number_of_tools_called,3,3,5.636364,0.059714,0.939394,large
+number_of_insights_generated,3,3,6.0,0.049787,1.0,large
+number_of_charts_generated,3,3,6.0,0.049787,1.0,large
+completeness_score,3,3,6.0,0.049787,1.0,large
+insight_quality_score,3,3,6.0,0.049787,1.0,large
+insight_relevance_score,3,3,2.0,0.367879,0.333333,moderate
+redundancy_score,3,3,0.0,1.0,0.0,negligible
+clarity_score,3,3,6.0,0.049787,1.0,large
+flesch_reading_ease,3,3,4.666667,0.096972,0.777778,large
+readability_score,3,3,4.666667,0.096972,0.777778,large
+visualization_suitability_score,3,3,0.0,1.0,0.0,negligible
+efficiency_score,3,3,5.6,0.06081,0.933333,large
+overall_quality_score,3,3,6.0,0.049787,1.0,large
+error_count,3,3,0.0,1.0,0.0,negligible

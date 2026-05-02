@@ -1,174 +1,117 @@
-# EDA Report: titanic_style — fixed mode
+# Automated EDA Report: titanic_style
 
-_Generated: 2026-04-30 02:26:07 UTC_
+## Dataset Name
+titanic_style
+
+## Workflow Mode
+fixed
+
+## Selected Tools
+- dataset_overview
+- missing_value_analysis
+- duplicate_analysis
+- numeric_summary
+- categorical_summary
+- correlation_analysis
+- outlier_detection
+- visualization_recommendation
+- chart_generation
+- insight_generation
 
 ## Dataset Overview
+Rows: 891, Columns: 11, Numeric: 7, Categorical: 4
 
-| Property | Value |
-|---|---|
-| Dataset name | titanic_style |
-| Agent mode | fixed |
-| Rows | 800 |
-| Columns | 11 |
-| Numeric columns | 7 |
-| Categorical columns | 4 |
-| Datetime columns | 0 |
-| Likely target column | Survived |
-| Memory usage (KB) | 212.94 |
+## Data Quality Findings
+Missing cells: 957 (9.76%).
+Duplicate rows: 0 (0.00%).
+Top missing columns:
+| column      |   missing_count |   missing_percentage |
+|-------------|-----------------|----------------------|
+| Cabin       |             687 |            77.1044   |
+| Age         |             186 |            20.8754   |
+| Embarked    |              14 |             1.57127  |
+| Fare        |              13 |             1.45903  |
+| Pclass      |              10 |             1.12233  |
+| Sex         |               9 |             1.0101   |
+| Parch       |               9 |             1.0101   |
+| PassengerId |               8 |             0.897868 |
+| Name        |               7 |             0.785634 |
+| SibSp       |               7 |             0.785634 |
 
-**Numeric columns:** PassengerId, Survived, Pclass, Age, SibSp, Parch, Fare
-
-**Categorical columns:** Name, Sex, Cabin, Embarked
-
-## Data Quality
-
-### Missing Values
-
-- Total missing cells: **779** (8.8%)
-- Columns with >20% missing: Age, Cabin
-
-| Column | Missing Count | Missing % |
-|---|---|---|
-| Age | 163 | 20.38% |
-| Cabin | 615 | 76.88% |
-| Embarked | 1 | 0.12% |
-
-### Duplicates
-
-- Duplicate rows: **0** (0.0%)
-
-## Statistical Analysis
-
+## Statistical Findings
 ### Numeric Summary
-
-| Column | Mean | Median | Std | Min | Max | Skewness |
-|---|---|---|---|---|---|---|
-| PassengerId | 400.5000 | 400.5000 | 231.0844 | 1.0000 | 800.0000 | 0.0 |
-| Survived | 0.3850 | 0.0000 | 0.4869 | 0.0000 | 1.0000 | 0.47356 |
-| Pclass | 2.3050 | 3.0000 | 0.8369 | 1.0000 | 3.0000 | -0.622347 |
-| Age | 29.8711 | 28.0000 | 14.5443 | 0.6700 | 80.0000 | 0.396534 |
-| SibSp | 0.5188 | 0.0000 | 1.0635 | 0.0000 | 8.0000 | 3.587 |
-| Parch | 0.3738 | 0.0000 | 0.8015 | 0.0000 | 6.0000 | 2.777661 |
-| Fare | 33.0385 | 14.5000 | 51.5249 | 0.0000 | 512.3292 | 4.706886 |
-
+| column   |      mean |       std |   min |     q1 |   median |     q3 |     max |   skewness |
+|----------|-----------|-----------|-------|--------|----------|--------|---------|------------|
+| Pclass   |  2.31328  |  0.833622 |  1    |  2     |   3      |  3     |   3     |  -0.639517 |
+| Age      | 29.7371   | 14.5672   |  0.42 | 20.5   |  28      | 38     |  80     |   0.390346 |
+| SibSp    |  0.511312 |  1.07103  |  0    |  0     |   0      |  1     |   8     |   3.66729  |
+| Parch    |  0.38322  |  0.807507 |  0    |  0     |   0      |  0     |   6     |   2.7434   |
+| Fare     | 32.454    | 49.9983   |  0    |  7.925 |  14.4583 | 31.275 | 512.329 |   4.74801  |
+| Survived |  0.385747 |  0.487047 |  0    |  0     |   0      |  1     |   1     |   0.469434 |
 ### Categorical Summary
-
-**Name** — 800 unique values, mode: `Abbott, Mr. Rossmore Edward`
-
-| Value | Count |
-|---|---|
-| Braund, Mr. Owen Harris | 1 |
-| Cumings, Mrs. John Bradley (Florence Briggs Thayer) | 1 |
-| Heikkinen, Miss. Laina | 1 |
-| Futrelle, Mrs. Jacques Heath (Lily May Peel) | 1 |
-| Allen, Mr. William Henry | 1 |
-
-**Sex** — 2 unique values, mode: `male`
-
-| Value | Count |
-|---|---|
-| male | 517 |
-| female | 283 |
-
-**Cabin** — 136 unique values, mode: `C23 C25 C27`
-
-| Value | Count |
-|---|---|
-| G6 | 4 |
-| C23 C25 C27 | 4 |
-| F33 | 3 |
-| E101 | 3 |
-| F2 | 3 |
-
-**Embarked** — 3 unique values, mode: `S`
-
-| Value | Count |
-|---|---|
-| S | 577 |
-| C | 149 |
-| Q | 73 |
-
-### Top Correlated Pairs
-
-| Column 1 | Column 2 | Pearson r |
-|---|---|---|
-| Pclass | Fare | -0.5591 |
-| SibSp | Parch | 0.4110 |
-| Pclass | Age | -0.3722 |
-| Survived | Pclass | -0.3254 |
-| Age | SibSp | -0.3065 |
-
-### Outlier Detection (IQR method)
-
-| Column | Outlier Count | Outlier % |
-|---|---|---|
-| PassengerId | 0 | 0.0% |
-| Survived | 0 | 0.0% |
-| Pclass | 0 | 0.0% |
-| Age | 12 | 1.88% |
-| SibSp | 40 | 5.0% |
-| Parch | 186 | 23.25% |
-| Fare | 107 | 13.38% |
+| column   |   unique_count | top_categories                      |
+|----------|----------------|-------------------------------------|
+| Sex      |              3 | male (571), female (311), <NA> (9)  |
+| Embarked |              4 | S (634), C (166), Q (77)            |
+| Cabin    |            148 | <NA> (687), G6 (4), C23 C25 C27 (4) |
+### Correlation Highlights
+Strongest pair: Pclass vs Fare (r=-0.549).
+### Outlier Detection
+| column   |   outlier_count |   outlier_percentage |   lower_bound |   upper_bound |
+|----------|-----------------|----------------------|---------------|---------------|
+| Parch    |             212 |             24.0363  |          0    |          0    |
+| Fare     |             116 |             13.2118  |        -27.1  |         66.3  |
+| SibSp    |              44 |              4.97738 |         -1.5  |          2.5  |
+| Age      |              11 |              1.56028 |         -5.75 |         64.25 |
+| Pclass   |               0 |              0       |          0.5  |          4.5  |
+| Survived |               0 |              0       |         -1.5  |          2.5  |
 
 ## Key Insights
-
-1. The dataset 'titanic_style' contains 800 rows and 11 columns.
-2. 779 missing cells detected (8.8% of all values).
-3. Columns with >20% missing data: Age, Cabin. Consider imputation or removal before modelling.
-4. No duplicate rows were found.
-5. Highly skewed numeric columns (|skew|>1): 'SibSp' (skew=3.59), 'Parch' (skew=2.78), 'Fare' (skew=4.71). Log or power transforms may improve model performance.
-6. Strongest correlation: 'Pclass' ↔ 'Fare' (r=-0.559). Multicollinearity may affect linear models.
-7. 5 feature pairs have |r|>0.3, suggesting potential redundancy.
-8. Columns with >5% outliers (IQR method): Parch, Fare. Investigate these rows and consider robust scalers.
-9. High-cardinality categorical columns (>50 unique values): Name, Cabin. Encoding strategy should be chosen carefully.
-10. 13 visualizations were recommended to aid exploratory analysis.
-11. Data quality issues found: missing values, outliers. Address these before downstream modelling.
+- Dataset contains 891 rows and 11 columns.
+- Missing data affects 957 cells (9.76%); most impacted columns: Cabin (687), Age (186), Embarked (14).
+- Pclass has mean 2.313, std 0.834, and spans [1.000, 3.000].
+- Age has mean 29.737, std 14.567, and spans [0.420, 80.000].
+- SibSp has mean 0.511, std 1.071, and spans [0.000, 8.000].
+- Strongest absolute correlation is between Pclass and Fare (r=-0.549).
+- Column Parch has the highest outlier load (212 rows, 24.04%).
 
 ## Visualization Recommendations
+| chart_type          | x                | y                | title                             | reason                                       |   priority |
+|---------------------|------------------|------------------|-----------------------------------|----------------------------------------------|------------|
+| correlation_heatmap | numeric_features | numeric_features | Correlation heatmap               | Multiple numeric columns are available.      |          1 |
+| missing_bar         | column           | missing_count    | Missing values by column          | Columns with missing values were detected.   |          1 |
+| scatter             | Pclass           | Fare             | Strongest numeric correlation     | Useful for validating linear trend strength. |          1 |
+| bar                 | Embarked         | count            | Category frequencies for Embarked | Categorical frequency comparison.            |          2 |
+| bar                 | Sex              | count            | Category frequencies for Sex      | Categorical frequency comparison.            |          2 |
+| histogram           | Age              |                  | Distribution of Age               | Numeric distribution overview.               |          2 |
+| histogram           | Fare             |                  | Distribution of Fare              | Numeric distribution overview.               |          2 |
+| histogram           | Parch            |                  | Distribution of Parch             | Numeric distribution overview.               |          2 |
+| histogram           | Pclass           |                  | Distribution of Pclass            | Numeric distribution overview.               |          2 |
+| histogram           | SibSp            |                  | Distribution of SibSp             | Numeric distribution overview.               |          2 |
+| target_box          | Survived         | Pclass           | Pclass by target (Survived)       | Highlights class-wise numeric spread.        |          3 |
+| target_box          | Survived         | SibSp            | SibSp by target (Survived)        | Highlights class-wise numeric spread.        |          3 |
 
-| # | Chart Type | Columns | Rationale |
-|---|---|---|---|
-| 1 | missing_values_bar | PassengerId, Survived, Pclass, Name, Sex, Age, SibSp, Parch, Fare, Cabin, Embarked | Visualise the extent of missingness across all columns. |
-| 2 | numeric_histogram | PassengerId | Inspect the distribution of numeric column 'PassengerId'. |
-| 3 | numeric_histogram | Survived | Inspect the distribution of numeric column 'Survived'. |
-| 4 | numeric_histogram | Pclass | Inspect the distribution of numeric column 'Pclass'. |
-| 5 | numeric_histogram | Age | Inspect the distribution of numeric column 'Age'. |
-| 6 | numeric_histogram | SibSp | Inspect the distribution of numeric column 'SibSp'. |
-| 7 | numeric_histogram | Parch | Inspect the distribution of numeric column 'Parch'. |
-| 8 | categorical_bar | Name | Show the frequency of categories in 'Name'. |
-| 9 | categorical_bar | Sex | Show the frequency of categories in 'Sex'. |
-| 10 | categorical_bar | Cabin | Show the frequency of categories in 'Cabin'. |
-| 11 | categorical_bar | Embarked | Show the frequency of categories in 'Embarked'. |
-| 12 | correlation_heatmap | PassengerId, Survived, Pclass, Age, SibSp, Parch, Fare | Reveal linear relationships between all numeric features. |
-| 13 | target_histogram | Survived | Distribution of numeric target 'Survived'. |
-
-## Generated Charts
-
-- `missing_values_bar.png`
-- `hist_PassengerId.png`
-- `hist_Survived.png`
-- `hist_Pclass.png`
-- `hist_Age.png`
-- `hist_SibSp.png`
-- `hist_Parch.png`
-- `catbar_Name.png`
-- `catbar_Sex.png`
-- `catbar_Cabin.png`
-- `catbar_Embarked.png`
-- `correlation_heatmap.png`
-- `target_dist_Survived.png`
+## Chart List
+- charts\correlation_heatmap.png
+- charts\missing_values_bar.png
+- charts\scatter_Pclass_vs_Fare.png
+- charts\catbar_Embarked.png
+- charts\catbar_Sex.png
+- charts\hist_Age.png
+- charts\hist_Fare.png
+- charts\hist_Parch.png
+- charts\hist_Pclass.png
+- charts\hist_SibSp.png
+- charts\target_box_Pclass_by_Survived.png
+- charts\target_box_SibSp_by_Survived.png
 
 ## Limitations
-
-- This report was generated automatically and may not capture all nuances of the data.
-- Statistical tests (normality, significance) are not performed.
-- Insights are heuristic and should be validated by a domain expert.
-- LLM-based tool selection may vary across runs.
-- Visualizations are limited to the most informative subset of columns.
+- Results depend on heuristic target detection and may not match domain intent.
+- Outlier logic is IQR-based and may over-flag skewed distributions.
+- LLM mode can fall back to rules when planning output is invalid or unavailable.
 
 ## Reproducibility Notes
-
 - Random seed: 42
-- All synthetic data generated with `numpy.random.seed(42)`.
-- Agent mode: **fixed**
-- To reproduce: `python main.py --dataset <path> --mode fixed`
+- Charts generated with matplotlib only (no seaborn).
+- Tool execution restricted to safe registry entries.
+- Input data source: CSV files under data/sample/.

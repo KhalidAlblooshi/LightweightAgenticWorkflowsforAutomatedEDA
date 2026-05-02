@@ -1,0 +1,13 @@
+chart_type,x,y,title,reason,priority
+correlation_heatmap,numeric_features,numeric_features,Correlation heatmap,Multiple numeric columns are available.,1
+missing_bar,column,missing_count,Missing values by column,Columns with missing values were detected.,1
+scatter,Pclass,Fare,Strongest numeric correlation,Useful for validating linear trend strength.,1
+bar,Embarked,count,Category frequencies for Embarked,Categorical frequency comparison.,2
+bar,Sex,count,Category frequencies for Sex,Categorical frequency comparison.,2
+histogram,Age,,Distribution of Age,Numeric distribution overview.,2
+histogram,Fare,,Distribution of Fare,Numeric distribution overview.,2
+histogram,Parch,,Distribution of Parch,Numeric distribution overview.,2
+histogram,Pclass,,Distribution of Pclass,Numeric distribution overview.,2
+histogram,SibSp,,Distribution of SibSp,Numeric distribution overview.,2
+target_box,Survived,Age,Age by target (Survived),Highlights class-wise numeric spread.,3
+target_box,Survived,Pclass,Pclass by target (Survived),Highlights class-wise numeric spread.,3

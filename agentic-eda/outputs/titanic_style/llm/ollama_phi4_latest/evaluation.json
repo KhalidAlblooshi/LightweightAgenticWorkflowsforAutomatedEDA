@@ -1,0 +1,23 @@
+{
+  "dataset_name": "titanic_style",
+  "mode": "llm__ollama_phi4_latest",
+  "strategy_mode": "llm",
+  "llm_label": "ollama_phi4_latest",
+  "runtime_seconds": 31.1014,
+  "number_of_tools_called": 11,
+  "number_of_insights_generated": 10,
+  "number_of_charts_generated": 12,
+  "completeness_score": 10.0,
+  "insight_quality_score": 9.5,
+  "insight_relevance_score": 8.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.2,
+  "flesch_reading_ease": 38.782,
+  "readability_score": 3.878,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 1.632,
+  "overall_quality_score": 7.639
+}

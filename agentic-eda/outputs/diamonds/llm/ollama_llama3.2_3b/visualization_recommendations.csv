@@ -1,0 +1,10 @@
+chart_type,x,y,title,reason,priority
+correlation_heatmap,numeric_features,numeric_features,Correlation heatmap,Multiple numeric columns are available.,1
+missing_bar,column,missing_count,Missing values by column,Columns with missing values were detected.,1
+scatter,carat,x,Strongest numeric correlation,Useful for validating linear trend strength.,1
+histogram,carat,,Distribution of carat,Numeric distribution overview.,2
+histogram,depth,,Distribution of depth,Numeric distribution overview.,2
+histogram,table,,Distribution of table,Numeric distribution overview.,2
+histogram,x,,Distribution of x,Numeric distribution overview.,2
+histogram,y,,Distribution of y,Numeric distribution overview.,2
+histogram,z,,Distribution of z,Numeric distribution overview.,2

@@ -1,0 +1,23 @@
+{
+  "dataset_name": "diamonds",
+  "mode": "fixed",
+  "strategy_mode": "fixed",
+  "llm_label": "",
+  "runtime_seconds": 3.0729,
+  "number_of_tools_called": 10,
+  "number_of_insights_generated": 8,
+  "number_of_charts_generated": 14,
+  "completeness_score": 10.0,
+  "insight_quality_score": 9.5,
+  "insight_relevance_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.5,
+  "flesch_reading_ease": 39.719,
+  "readability_score": 3.972,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 8.265,
+  "overall_quality_score": 9.07
+}

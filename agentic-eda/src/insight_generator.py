@@ -1,185 +1,149 @@
-"""Insight generator — produces natural-language observations from EDA results."""
+"""Generate concise textual insights from tool outputs."""
 
-import pandas as pd
+from __future__ import annotations
+
+from difflib import SequenceMatcher
+from typing import Any
+
+from src.utils import safe_div
 
 
-def generate_insights(df: pd.DataFrame, profile: dict, tool_results: dict) -> list:
-    """Produce 10-20 insight strings from *tool_results* and *profile*.
 
-    Parameters
-    ----------
-    df:
-        The source DataFrame.
-    profile:
-        Dataset profile dict.
-    tool_results:
-        Dict mapping tool names to their result dicts.
+def _is_similar(a: str, b: str, threshold: float = 0.9) -> bool:
+    return SequenceMatcher(None, a.lower().strip(), b.lower().strip()).ratio() >= threshold
 
-    Returns
-    -------
-    List of non-empty insight strings.
-    """
-    insights: list = []
-    name = profile["dataset_name"]
-    n_rows = profile["n_rows"]
-    n_cols = profile["n_cols"]
 
-    # --- Dataset size ---
-    insights.append(
-        f"The dataset '{name}' contains {n_rows:,} rows and {n_cols} columns."
-    )
-    if n_rows < 100:
-        insights.append(
-            "The dataset is very small (<100 rows); statistical conclusions may be unreliable."
+
+def _deduplicate(insights: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    unique: list[dict[str, Any]] = []
+    for candidate in insights:
+        text = str(candidate.get("insight", "")).strip()
+        if not text:
+            continue
+        if any(_is_similar(text, str(existing.get("insight", ""))) for existing in unique):
+            continue
+        unique.append(candidate)
+    return unique
+
+
+
+def generate_insights(tool_results: dict[str, Any]) -> dict[str, Any]:
+    """Create insight objects in a report-friendly, JSON-serializable format."""
+    raw_insights: list[dict[str, Any]] = []
+
+    overview = tool_results.get("dataset_overview", {})
+    if overview:
+        raw_insights.append(
+            {
+                "source_tool": "dataset_overview",
+                "insight": (
+                    f"Dataset contains {overview.get('row_count', 0)} rows and "
+                    f"{overview.get('column_count', 0)} columns."
+                ),
+            }
         )
-    elif n_rows > 50_000:
-        insights.append(
-            "The dataset is large (>50 000 rows), which supports robust statistical analyses."
-        )
 
-    # --- Missing values ---
-    mv = tool_results.get("missing_value_analysis", {})
-    total_missing = mv.get("total_missing_cells", 0)
-    high_missing_cols = mv.get("columns_above_20pct_missing", [])
-    if total_missing == 0:
-        insights.append("No missing values were detected; the dataset appears complete.")
-    else:
-        pct = mv.get("overall_missing_pct", 0)
-        insights.append(
-            f"{total_missing:,} missing cells detected ({pct:.1f}% of all values)."
-        )
-        if high_missing_cols:
-            cols_str = ", ".join(high_missing_cols)
-            insights.append(
-                f"Columns with >20% missing data: {cols_str}. "
-                "Consider imputation or removal before modelling."
+    missing = tool_results.get("missing_value_analysis", {})
+    if missing:
+        missing_cells = missing.get("total_missing_cells", 0)
+        missing_pct = missing.get("missing_cell_percentage", 0.0)
+        if missing_cells > 0:
+            top = missing.get("top_missing_columns", [])
+            top_text = ", ".join(f"{x['column']} ({x['missing_count']})" for x in top[:3])
+            raw_insights.append(
+                {
+                    "source_tool": "missing_value_analysis",
+                    "insight": (
+                        f"Missing data affects {missing_cells} cells ({missing_pct:.2f}%); "
+                        f"most impacted columns: {top_text}."
+                    ),
+                }
+            )
+        else:
+            raw_insights.append(
+                {
+                    "source_tool": "missing_value_analysis",
+                    "insight": "No missing values were detected.",
+                }
             )
 
-    # --- Duplicates ---
     dup = tool_results.get("duplicate_analysis", {})
-    dup_count = dup.get("duplicate_row_count", 0)
-    if dup_count > 0:
-        dup_pct = dup.get("duplicate_row_pct", 0)
-        insights.append(
-            f"{dup_count} duplicate rows detected ({dup_pct:.1f}%). "
-            "Remove duplicates before training ML models."
-        )
-    else:
-        insights.append("No duplicate rows were found.")
-
-    # --- Numeric distributions ---
-    num_sum = tool_results.get("numeric_summary", {})
-    skewed_cols = []
-    for col, stats in num_sum.items():
-        if isinstance(stats, dict):
-            skew = stats.get("skewness")
-            if skew is not None and abs(skew) > 1.0:
-                skewed_cols.append((col, skew))
-    if skewed_cols:
-        examples = ", ".join(
-            f"'{c}' (skew={s:.2f})" for c, s in skewed_cols[:4]
-        )
-        insights.append(
-            f"Highly skewed numeric columns (|skew|>1): {examples}. "
-            "Log or power transforms may improve model performance."
-        )
-
-    # --- Correlations ---
-    corr_res = tool_results.get("correlation_analysis", {})
-    top_pairs = corr_res.get("top_correlated_pairs", [])
-    if top_pairs:
-        pair = top_pairs[0]
-        insights.append(
-            f"Strongest correlation: '{pair.get('col1')}' ↔ '{pair.get('col2')}' "
-            f"(r={pair.get('correlation', 0):.3f}). "
-            "Multicollinearity may affect linear models."
-        )
-    if len(top_pairs) > 3:
-        insights.append(
-            f"{len(top_pairs)} feature pairs have |r|>0.3, suggesting potential redundancy."
-        )
-
-    # --- Outliers ---
-    outlier_res = tool_results.get("outlier_detection", {})
-    high_outlier_cols = [
-        col for col, stats in outlier_res.items()
-        if isinstance(stats, dict) and stats.get("outlier_pct", 0) > 5
-    ]
-    if high_outlier_cols:
-        cols_str = ", ".join(high_outlier_cols[:4])
-        insights.append(
-            f"Columns with >5% outliers (IQR method): {cols_str}. "
-            "Investigate these rows and consider robust scalers."
-        )
-    else:
-        numeric_cols = profile["numeric_columns"]
-        if numeric_cols:
-            insights.append("No numeric column has more than 5% IQR-flagged outliers.")
-
-    # --- Categorical columns ---
-    cat_sum = tool_results.get("categorical_summary", {})
-    high_cardinality = []
-    for col, stats in cat_sum.items():
-        if isinstance(stats, dict):
-            unique = stats.get("unique_count", 0)
-            if unique > 50:
-                high_cardinality.append(col)
-    if high_cardinality:
-        cols_str = ", ".join(high_cardinality)
-        insights.append(
-            f"High-cardinality categorical columns (>50 unique values): {cols_str}. "
-            "Encoding strategy should be chosen carefully."
-        )
-
-    # --- Target variable ---
-    tgt = profile.get("likely_target_col")
-    ta = tool_results.get("target_aware_analysis", {})
-    if tgt and not ta.get("skipped"):
-        target_type = ta.get("target_type", "unknown")
-        if target_type == "categorical":
-            class_dist = ta.get("class_distribution", {})
-            if class_dist:
-                vals = list(class_dist.values())
-                if vals:
-                    max_pct = max(vals)
-                    if max_pct > 70:
-                        insights.append(
-                            f"Target '{tgt}' is imbalanced — dominant class covers "
-                            f"{max_pct:.1f}% of rows. Consider resampling or class weights."
-                        )
-                    else:
-                        insights.append(
-                            f"Target '{tgt}' is relatively balanced across classes."
-                        )
-        elif target_type == "numeric":
-            insights.append(
-                f"Target '{tgt}' is numeric; regression models are appropriate."
+    if dup:
+        duplicate_count = dup.get("duplicate_rows", 0)
+        duplicate_pct = dup.get("duplicate_percentage", 0.0)
+        if duplicate_count > 0:
+            raw_insights.append(
+                {
+                    "source_tool": "duplicate_analysis",
+                    "insight": (
+                        f"Detected {duplicate_count} duplicate rows ({duplicate_pct:.2f}% of dataset), "
+                        "which may bias model evaluation if not handled."
+                    ),
+                }
             )
 
-    # --- Visualization ---
-    viz_recs = tool_results.get("visualization_recommendation", {})
-    n_recs = len(viz_recs) if isinstance(viz_recs, list) else 0
-    if n_recs > 0:
-        insights.append(
-            f"{n_recs} visualizations were recommended to aid exploratory analysis."
+    numeric = tool_results.get("numeric_summary", {})
+    for row in numeric.get("column_summaries", [])[:3]:
+        raw_insights.append(
+            {
+                "source_tool": "numeric_summary",
+                "insight": (
+                    f"{row['column']} has mean {row['mean']:.3f}, std {row['std']:.3f}, "
+                    f"and spans [{row['min']:.3f}, {row['max']:.3f}]."
+                ),
+            }
         )
 
-    # --- General data quality note ---
-    issues = []
-    if total_missing > 0:
-        issues.append("missing values")
-    if dup_count > 0:
-        issues.append("duplicate rows")
-    if high_outlier_cols:
-        issues.append("outliers")
-    if issues:
-        insights.append(
-            f"Data quality issues found: {', '.join(issues)}. "
-            "Address these before downstream modelling."
-        )
-    else:
-        insights.append(
-            "No major data quality issues (missing values, duplicates, or heavy outliers) found."
+    corr = tool_results.get("correlation_analysis", {})
+    strongest = corr.get("strongest_pair")
+    if strongest:
+        raw_insights.append(
+            {
+                "source_tool": "correlation_analysis",
+                "insight": (
+                    f"Strongest absolute correlation is between {strongest.get('feature_1')} and "
+                    f"{strongest.get('feature_2')} (r={strongest.get('correlation', 0.0):.3f})."
+                ),
+            }
         )
 
-    return insights
+    outliers = tool_results.get("outlier_detection", {})
+    ranked = outliers.get("ranked_outlier_columns", [])
+    if ranked:
+        top = ranked[0]
+        raw_insights.append(
+            {
+                "source_tool": "outlier_detection",
+                "insight": (
+                    f"Column {top['column']} has the highest outlier load "
+                    f"({top['outlier_count']} rows, {top['outlier_percentage']:.2f}%)."
+                ),
+            }
+        )
+
+    target = tool_results.get("target_aware_analysis", {})
+    if target:
+        findings = target.get("findings", [])
+        for finding in findings[:3]:
+            raw_insights.append(
+                {
+                    "source_tool": "target_aware_analysis",
+                    "insight": finding,
+                }
+            )
+
+    unique_insights = _deduplicate(raw_insights)
+
+    duplicate_count = max(len(raw_insights) - len(unique_insights), 0)
+    redundancy_ratio = safe_div(duplicate_count, max(len(raw_insights), 1), default=0.0)
+
+    for idx, insight in enumerate(unique_insights, start=1):
+        insight["insight_id"] = idx
+
+    return {
+        "insight_count": len(unique_insights),
+        "raw_insight_count": len(raw_insights),
+        "redundant_insight_count": duplicate_count,
+        "redundancy_ratio": redundancy_ratio,
+        "insights": unique_insights,
+    }

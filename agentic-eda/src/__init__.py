@@ -1,1 +1,1 @@
-# src/__init__.py
+"""Core modules for the agentic EDA project."""

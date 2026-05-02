@@ -1,0 +1,5 @@
+source_tool,insight,insight_id
+dataset_overview,Dataset contains 32560 rows and 15 columns.,1
+missing_value_analysis,"Missing data affects 9061 cells (1.86%); most impacted columns: occupation (2143), workclass (2127), native_country (903).",2
+duplicate_analysis,"Detected 19 duplicate rows (0.06% of dataset), which may bias model evaluation if not handled.",3
+correlation_analysis,Strongest absolute correlation is between education_num and hours_per_week (r=0.148).,4

@@ -1,0 +1,23 @@
+{
+  "dataset_name": "diamonds",
+  "mode": "llm__ollama_mistral_latest",
+  "strategy_mode": "llm",
+  "llm_label": "ollama_mistral_latest",
+  "runtime_seconds": 9.7227,
+  "number_of_tools_called": 10,
+  "number_of_insights_generated": 10,
+  "number_of_charts_generated": 14,
+  "completeness_score": 8.571,
+  "insight_quality_score": 9.5,
+  "insight_relevance_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.2,
+  "flesch_reading_ease": 38.678,
+  "readability_score": 3.868,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 4.613,
+  "overall_quality_score": 8.436
+}

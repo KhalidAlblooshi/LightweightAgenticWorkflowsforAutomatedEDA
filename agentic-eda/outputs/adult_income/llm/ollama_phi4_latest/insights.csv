@@ -1,0 +1,11 @@
+source_tool,insight,insight_id
+dataset_overview,Dataset contains 32560 rows and 15 columns.,1
+missing_value_analysis,"Missing data affects 9061 cells (1.86%); most impacted columns: occupation (2143), workclass (2127), native_country (903).",2
+duplicate_analysis,"Detected 19 duplicate rows (0.06% of dataset), which may bias model evaluation if not handled.",3
+numeric_summary,"age has mean 38.580, std 13.639, and spans [17.000, 90.000].",4
+numeric_summary,"fnlwgt has mean 189776.362, std 105561.414, and spans [12285.000, 1484705.000].",5
+numeric_summary,"education_num has mean 10.078, std 2.572, and spans [1.000, 16.000].",6
+correlation_analysis,Strongest absolute correlation is between education_num and hours_per_week (r=0.148).,7
+outlier_detection,"Column hours_per_week has the highest outlier load (8922 rows, 27.66%).",8
+target_aware_analysis,"Target class distribution: <=50K=24499, >50K=7767.",9
+target_aware_analysis,ANOVA for 'age' across target 'income' groups: p-value=0.,10

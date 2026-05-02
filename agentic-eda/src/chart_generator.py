@@ -1,247 +1,265 @@
-"""Chart generator — renders and saves all visualizations using matplotlib only."""
+"""Matplotlib chart generation for recommended EDA visuals."""
 
-import math
+from __future__ import annotations
+
 from pathlib import Path
+from typing import Any
 
 import matplotlib
+
 matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 
-from src.utils import ensure_dir, sanitize_name
+from src.utils import ensure_dir
+
+
+
+def _safe_filename(prefix: str, value: str) -> str:
+    cleaned = "".join(ch if ch.isalnum() or ch in "._-" else "_" for ch in value)
+    return f"{prefix}_{cleaned}.png"
+
+
+
+def _save_current_figure(path: Path) -> str:
+    plt.tight_layout()
+    plt.savefig(path, dpi=150)
+    plt.close()
+    return str(path)
+
+
+
+def _plot_missing_values(df: pd.DataFrame, charts_dir: Path) -> str | None:
+    missing = df.isna().sum().sort_values(ascending=False)
+    missing = missing[missing > 0]
+    if missing.empty:
+        return None
+
+    plt.figure(figsize=(8, 4))
+    plt.bar(missing.index.astype(str), missing.values)
+    plt.title("Missing Values by Column")
+    plt.xticks(rotation=45, ha="right")
+    plt.ylabel("Missing count")
+    return _save_current_figure(charts_dir / "missing_values_bar.png")
+
+
+
+def _plot_histogram(df: pd.DataFrame, col: str, charts_dir: Path) -> str | None:
+    if col not in df.columns:
+        return None
+    if not pd.api.types.is_numeric_dtype(df[col]):
+        return None
+
+    series = df[col].dropna()
+    if series.empty:
+        return None
+
+    plt.figure(figsize=(7, 4))
+    plt.hist(series, bins=20, edgecolor="black", alpha=0.8)
+    plt.title(f"Histogram: {col}")
+    plt.xlabel(col)
+    plt.ylabel("Frequency")
+    return _save_current_figure(charts_dir / _safe_filename("hist", col))
+
+
+
+def _plot_categorical_bar(df: pd.DataFrame, col: str, charts_dir: Path) -> str | None:
+    if col not in df.columns:
+        return None
+
+    full_counts = df[col].fillna("<NA>").astype(str).value_counts(dropna=False)
+    if full_counts.empty:
+        return None
+
+    unique_count = int(len(full_counts))
+    singleton_ratio = float((full_counts == 1).sum() / max(unique_count, 1))
+    max_unique_allowed = min(30, max(int(len(df) * 0.2), 8))
+    if unique_count > max_unique_allowed:
+        return None
+    if singleton_ratio > 0.55 and unique_count > 12:
+        return None
+
+    value_counts = full_counts.head(15)
+    plt.figure(figsize=(8, 4))
+    plt.bar(value_counts.index, value_counts.values)
+    plt.title(f"Category Counts: {col}")
+    plt.xlabel(col)
+    plt.ylabel("Count")
+    plt.xticks(rotation=45, ha="right")
+    return _save_current_figure(charts_dir / _safe_filename("catbar", col))
+
+
+
+def _plot_correlation_heatmap(df: pd.DataFrame, numeric_cols: list[str], charts_dir: Path) -> str | None:
+    if len(numeric_cols) < 2:
+        return None
+
+    corr = df[numeric_cols].corr(numeric_only=True)
+    if corr.empty:
+        return None
+
+    plt.figure(figsize=(8, 6))
+    img = plt.imshow(corr.values, cmap="coolwarm", vmin=-1, vmax=1)
+    plt.colorbar(img, fraction=0.046, pad=0.04)
+    plt.title("Correlation Heatmap")
+    plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+    plt.yticks(range(len(corr.index)), corr.index)
+    return _save_current_figure(charts_dir / "correlation_heatmap.png")
+
+
+
+def _plot_scatter(df: pd.DataFrame, x_col: str, y_col: str, charts_dir: Path) -> str | None:
+    if x_col not in df.columns or y_col not in df.columns:
+        return None
+    if not pd.api.types.is_numeric_dtype(df[x_col]) or not pd.api.types.is_numeric_dtype(df[y_col]):
+        return None
+
+    subset = df[[x_col, y_col]].dropna()
+    if subset.empty:
+        return None
+
+    plt.figure(figsize=(7, 5))
+    plt.scatter(subset[x_col], subset[y_col], alpha=0.6, s=16)
+    plt.title(f"Scatter: {x_col} vs {y_col}")
+    plt.xlabel(x_col)
+    plt.ylabel(y_col)
+    return _save_current_figure(charts_dir / _safe_filename("scatter", f"{x_col}_vs_{y_col}"))
+
+
+
+def _plot_target_box(df: pd.DataFrame, target_col: str, num_col: str, charts_dir: Path) -> str | None:
+    if target_col not in df.columns or num_col not in df.columns:
+        return None
+
+    groups = []
+    labels = []
+    for cat_value, group_df in df[[target_col, num_col]].dropna().groupby(target_col):
+        groups.append(group_df[num_col].values)
+        labels.append(str(cat_value))
+
+    if len(groups) < 2:
+        return None
+
+    plt.figure(figsize=(8, 5))
+    plt.boxplot(groups, labels=labels, patch_artist=True)
+    plt.title(f"{num_col} by {target_col}")
+    plt.xlabel(target_col)
+    plt.ylabel(num_col)
+    plt.xticks(rotation=45, ha="right")
+    return _save_current_figure(charts_dir / _safe_filename("target_box", f"{num_col}_by_{target_col}"))
+
+
+
+def _plot_target_bar_mean(df: pd.DataFrame, cat_col: str, target_col: str, charts_dir: Path) -> str | None:
+    if cat_col not in df.columns or target_col not in df.columns:
+        return None
+    if not pd.api.types.is_numeric_dtype(df[target_col]):
+        return None
+
+    cat_counts = df[cat_col].dropna().astype(str).value_counts(dropna=False)
+    if cat_counts.empty:
+        return None
+
+    unique_count = int(len(cat_counts))
+    singleton_ratio = float((cat_counts == 1).sum() / max(unique_count, 1))
+    if unique_count > 12:
+        return None
+    if singleton_ratio > 0.45 and unique_count > 8:
+        return None
+
+    grouped = (
+        df[[cat_col, target_col]]
+        .dropna()
+        .groupby(cat_col, observed=False)[target_col]
+        .mean()
+        .sort_values(ascending=False)
+        .head(15)
+    )
+    if grouped.empty:
+        return None
+
+    plt.figure(figsize=(8, 4))
+    plt.bar(grouped.index.astype(str), grouped.values)
+    plt.title(f"Mean {target_col} by {cat_col}")
+    plt.xlabel(cat_col)
+    plt.ylabel(f"Mean {target_col}")
+    plt.xticks(rotation=45, ha="right")
+    return _save_current_figure(charts_dir / _safe_filename("target_mean", f"{target_col}_by_{cat_col}"))
+
 
 
 def generate_charts(
     df: pd.DataFrame,
-    profile: dict,
-    recommendations: list,
-    output_dir: Path,
-    dataset_name: str,
-    mode: str,
-) -> list:
-    """Render charts from *recommendations* and save them as PNGs.
-
-    Parameters
-    ----------
-    df:
-        Source DataFrame.
-    profile:
-        Dataset profile dict.
-    recommendations:
-        List of recommendation dicts from the visualization recommender.
-    output_dir:
-        Root output directory.
-    dataset_name:
-        Used in filenames and titles.
-    mode:
-        Agent mode string (used in filenames).
-
-    Returns
-    -------
-    List of saved file path strings (relative to *output_dir*).
-    """
-    charts_dir = output_dir / "charts"
+    profile: dict[str, Any],
+    recommendations: list[dict[str, Any]],
+    charts_dir: Path,
+) -> dict[str, Any]:
+    """Generate charts based on recommendations and return output metadata."""
     ensure_dir(charts_dir)
 
-    saved: list = []
-    numeric_cols = profile["numeric_columns"]
-    categorical_cols = profile["categorical_columns"]
-    target_col = profile.get("likely_target_col")
+    chart_paths: list[str] = []
+    failures: list[str] = []
 
-    # Track which chart types have already been rendered to avoid duplicates
-    rendered = set()
+    numeric_cols = profile.get("numeric_columns", [])
+    id_like_cols = set(profile.get("id_like_columns", []))
+    missing_done = False
+    heatmap_done = False
 
     for rec in recommendations:
-        chart_type = rec["chart_type"]
-        cols = rec.get("columns", [])
+        chart_type = rec.get("chart_type")
+        created: str | None = None
 
         try:
-            if chart_type == "missing_values_bar" and "missing_values_bar" not in rendered:
-                path = _missing_values_bar(df, profile, charts_dir, dataset_name)
-                if path:
-                    saved.append(str(path))
-                rendered.add(chart_type)
+            if chart_type == "missing_bar":
+                if not missing_done:
+                    created = _plot_missing_values(df, charts_dir)
+                    missing_done = True
+            elif chart_type == "histogram":
+                x_col = str(rec.get("x"))
+                if x_col in id_like_cols:
+                    failures.append(f"{chart_type}({x_col}): skipped identifier-like column.")
+                    continue
+                created = _plot_histogram(df, x_col, charts_dir)
+            elif chart_type == "bar":
+                x_col = str(rec.get("x"))
+                if x_col in id_like_cols:
+                    failures.append(f"{chart_type}({x_col}): skipped identifier-like column.")
+                    continue
+                created = _plot_categorical_bar(df, x_col, charts_dir)
+            elif chart_type == "correlation_heatmap":
+                if not heatmap_done:
+                    created = _plot_correlation_heatmap(df, numeric_cols, charts_dir)
+                    heatmap_done = created is not None
+            elif chart_type == "scatter":
+                x_col = str(rec.get("x"))
+                y_col = str(rec.get("y"))
+                if x_col in id_like_cols or y_col in id_like_cols:
+                    failures.append(f"{chart_type}({x_col},{y_col}): skipped identifier-like column.")
+                    continue
+                created = _plot_scatter(df, x_col, y_col, charts_dir)
+            elif chart_type == "target_box":
+                x_col = str(rec.get("x"))
+                y_col = str(rec.get("y"))
+                if x_col in id_like_cols or y_col in id_like_cols:
+                    failures.append(f"{chart_type}({x_col},{y_col}): skipped identifier-like column.")
+                    continue
+                created = _plot_target_box(df, x_col, y_col, charts_dir)
+            elif chart_type == "target_bar_mean":
+                x_col = str(rec.get("x"))
+                y_col = str(rec.get("y"))
+                if x_col in id_like_cols:
+                    failures.append(f"{chart_type}({x_col}): skipped identifier-like column.")
+                    continue
+                created = _plot_target_bar_mean(df, x_col, y_col, charts_dir)
+        except Exception as exc:  # pragma: no cover - defensive plotting guard
+            failures.append(f"{chart_type}: {exc}")
 
-            elif chart_type == "numeric_histogram":
-                col = cols[0] if cols else None
-                if col and col in df.columns:
-                    key = f"hist_{col}"
-                    if key not in rendered:
-                        path = _histogram(df, col, charts_dir, dataset_name)
-                        if path:
-                            saved.append(str(path))
-                        rendered.add(key)
+        if created and created not in chart_paths:
+            chart_paths.append(created)
 
-            elif chart_type == "categorical_bar":
-                col = cols[0] if cols else None
-                if col and col in df.columns:
-                    key = f"catbar_{col}"
-                    if key not in rendered:
-                        path = _categorical_bar(df, col, charts_dir, dataset_name)
-                        if path:
-                            saved.append(str(path))
-                        rendered.add(key)
-
-            elif chart_type == "correlation_heatmap" and "correlation_heatmap" not in rendered:
-                if len(numeric_cols) >= 2:
-                    path = _correlation_heatmap(df, numeric_cols, charts_dir, dataset_name)
-                    if path:
-                        saved.append(str(path))
-                rendered.add("correlation_heatmap")
-
-            elif chart_type == "scatter_plot" and len(cols) == 2:
-                key = f"scatter_{'_'.join(cols)}"
-                if key not in rendered:
-                    path = _scatter_plot(df, cols[0], cols[1], charts_dir, dataset_name)
-                    if path:
-                        saved.append(str(path))
-                    rendered.add(key)
-
-            elif chart_type in ("target_distribution_bar", "target_histogram"):
-                if target_col and target_col in df.columns:
-                    key = f"target_dist_{target_col}"
-                    if key not in rendered:
-                        path = _target_distribution(df, target_col, charts_dir, dataset_name)
-                        if path:
-                            saved.append(str(path))
-                        rendered.add(key)
-
-            elif chart_type == "box_plot_by_target" and len(cols) == 2:
-                feat_col, tgt_col = cols
-                key = f"box_{feat_col}_{tgt_col}"
-                if key not in rendered and feat_col in df.columns and tgt_col in df.columns:
-                    path = _box_by_target(df, feat_col, tgt_col, charts_dir, dataset_name)
-                    if path:
-                        saved.append(str(path))
-                    rendered.add(key)
-
-        except Exception as exc:
-            print(f"  [chart_generator] Warning: failed to render '{chart_type}': {exc}")
-
-    return saved
-
-
-# ---------------------------------------------------------------------------
-# Internal rendering helpers
-# ---------------------------------------------------------------------------
-
-def _save(fig: plt.Figure, path: Path) -> Path:
-    fig.tight_layout()
-    fig.savefig(path, dpi=100, bbox_inches="tight")
-    plt.close(fig)
-    return path
-
-
-def _missing_values_bar(df, profile, charts_dir, dataset_name):
-    missing = {c: v for c, v in profile["missing_counts"].items() if v > 0}
-    if not missing:
-        return None
-    cols = list(missing.keys())
-    vals = [missing[c] for c in cols]
-    fig, ax = plt.subplots(figsize=(max(6, len(cols) * 0.7), 4))
-    ax.bar(range(len(cols)), vals, color="#d62728")
-    ax.set_xticks(range(len(cols)))
-    ax.set_xticklabels(cols, rotation=45, ha="right", fontsize=8)
-    ax.set_ylabel("Missing count")
-    ax.set_title(f"Missing Values — {dataset_name}")
-    path = charts_dir / "missing_values_bar.png"
-    return _save(fig, path)
-
-
-def _histogram(df, col, charts_dir, dataset_name):
-    data = df[col].dropna()
-    if data.empty:
-        return None
-    fig, ax = plt.subplots(figsize=(6, 4))
-    ax.hist(data, bins=30, color="#1f77b4", edgecolor="white")
-    ax.set_xlabel(col)
-    ax.set_ylabel("Frequency")
-    ax.set_title(f"Distribution of {col} — {dataset_name}")
-    path = charts_dir / f"hist_{sanitize_name(col)}.png"
-    return _save(fig, path)
-
-
-def _categorical_bar(df, col, charts_dir, dataset_name):
-    counts = df[col].value_counts().head(15)
-    if counts.empty:
-        return None
-    fig, ax = plt.subplots(figsize=(max(6, len(counts) * 0.8), 4))
-    ax.bar(range(len(counts)), counts.values, color="#2ca02c")
-    ax.set_xticks(range(len(counts)))
-    ax.set_xticklabels(counts.index.astype(str), rotation=45, ha="right", fontsize=8)
-    ax.set_ylabel("Count")
-    ax.set_title(f"Category Counts: {col} — {dataset_name}")
-    path = charts_dir / f"catbar_{sanitize_name(col)}.png"
-    return _save(fig, path)
-
-
-def _correlation_heatmap(df, numeric_cols, charts_dir, dataset_name):
-    corr = df[numeric_cols].corr()
-    n = len(numeric_cols)
-    fig, ax = plt.subplots(figsize=(max(6, n * 0.8), max(5, n * 0.7)))
-    im = ax.imshow(corr.values, vmin=-1, vmax=1, cmap="RdBu_r", aspect="auto")
-    ax.set_xticks(range(n))
-    ax.set_yticks(range(n))
-    labels = [c if len(c) <= 12 else c[:10] + ".." for c in numeric_cols]
-    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=7)
-    ax.set_yticklabels(labels, fontsize=7)
-    # Annotate cells
-    for i in range(n):
-        for j in range(n):
-            val = corr.values[i, j]
-            if not np.isnan(val):
-                ax.text(j, i, f"{val:.2f}", ha="center", va="center", fontsize=6)
-    plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    ax.set_title(f"Correlation Heatmap — {dataset_name}")
-    path = charts_dir / "correlation_heatmap.png"
-    return _save(fig, path)
-
-
-def _scatter_plot(df, col_x, col_y, charts_dir, dataset_name):
-    data = df[[col_x, col_y]].dropna()
-    if data.empty:
-        return None
-    fig, ax = plt.subplots(figsize=(6, 4))
-    ax.scatter(data[col_x], data[col_y], alpha=0.4, s=15, color="#9467bd")
-    ax.set_xlabel(col_x)
-    ax.set_ylabel(col_y)
-    ax.set_title(f"{col_x} vs {col_y} — {dataset_name}")
-    path = charts_dir / f"scatter_{sanitize_name(col_x)}_{sanitize_name(col_y)}.png"
-    return _save(fig, path)
-
-
-def _target_distribution(df, target_col, charts_dir, dataset_name):
-    if df[target_col].dtype == object or str(df[target_col].dtype) == "category":
-        counts = df[target_col].value_counts()
-        fig, ax = plt.subplots(figsize=(max(5, len(counts) * 0.8), 4))
-        ax.bar(range(len(counts)), counts.values, color="#ff7f0e")
-        ax.set_xticks(range(len(counts)))
-        ax.set_xticklabels(counts.index.astype(str), rotation=45, ha="right", fontsize=8)
-        ax.set_ylabel("Count")
-        ax.set_title(f"Target Distribution: {target_col} — {dataset_name}")
-    else:
-        data = df[target_col].dropna()
-        fig, ax = plt.subplots(figsize=(6, 4))
-        ax.hist(data, bins=20, color="#ff7f0e", edgecolor="white")
-        ax.set_xlabel(target_col)
-        ax.set_ylabel("Frequency")
-        ax.set_title(f"Target Distribution: {target_col} — {dataset_name}")
-    path = charts_dir / f"target_dist_{sanitize_name(target_col)}.png"
-    return _save(fig, path)
-
-
-def _box_by_target(df, feat_col, target_col, charts_dir, dataset_name):
-    groups = df.groupby(target_col)[feat_col].apply(lambda x: x.dropna().tolist())
-    if groups.empty:
-        return None
-    labels = [str(k) for k in groups.index]
-    data = [groups[k] for k in groups.index]
-    fig, ax = plt.subplots(figsize=(max(5, len(labels) * 0.8), 4))
-    ax.boxplot(data, labels=labels, patch_artist=True)
-    ax.set_xlabel(target_col)
-    ax.set_ylabel(feat_col)
-    ax.set_title(f"{feat_col} by {target_col} — {dataset_name}")
-    plt.xticks(rotation=45, ha="right", fontsize=8)
-    path = charts_dir / f"box_{sanitize_name(feat_col)}_by_{sanitize_name(target_col)}.png"
-    return _save(fig, path)
+    return {
+        "charts_generated": len(chart_paths),
+        "chart_paths": chart_paths,
+        "plot_failures": failures,
+    }

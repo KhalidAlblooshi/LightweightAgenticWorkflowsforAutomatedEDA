@@ -1,102 +1,109 @@
-"""Rule-Based Agent — selects tools adaptively based on dataset characteristics."""
+"""Rule-based agent for adaptive deterministic EDA tool selection."""
+
+from __future__ import annotations
 
 import time
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
-from src.tool_registry import get_tool
+from src.eda_tools import EDATools, build_tool_map
+from src.tool_registry import ToolRegistry
 
 
 class RuleBasedAgent:
-    """Selects and executes EDA tools based on profile-driven rules."""
+    """Select tools based on dataset properties using explicit rules."""
 
-    def __init__(self, df: pd.DataFrame, profile: dict, output_dir: Path):
+    def __init__(self, df: pd.DataFrame, profile: dict[str, Any], run_dir: Path) -> None:
         self.df = df
         self.profile = profile
-        self.output_dir = Path(output_dir)
+        self.run_dir = run_dir
 
-    def _select_tools(self) -> list:
-        """Apply heuristic rules to produce an ordered tool sequence."""
-        tools = []
+    def _timestamp(self) -> str:
+        return datetime.now(timezone.utc).isoformat()
 
-        # Rule 1: Always run core overview and quality checks
-        tools += ["dataset_overview", "missing_value_analysis", "duplicate_analysis"]
+    def select_tools(self) -> list[str]:
+        tools = [
+            "dataset_overview",
+            "missing_value_analysis",
+            "duplicate_analysis",
+        ]
 
-        # Rule 2: Numeric analyses if numeric columns are present
-        if self.profile["numeric_columns"]:
-            tools += ["numeric_summary", "correlation_analysis", "outlier_detection"]
+        if self.profile.get("numeric_columns"):
+            tools.extend([
+                "numeric_summary",
+                "correlation_analysis",
+                "outlier_detection",
+            ])
 
-        # Rule 3: Categorical analysis if categorical columns are present
-        if self.profile["categorical_columns"]:
+        if self.profile.get("categorical_columns"):
             tools.append("categorical_summary")
 
-        # Rule 4: Target-aware analysis if a target column was identified
-        if self.profile["has_likely_target"]:
+        target_col = self.profile.get("likely_target_col")
+        if target_col:
             tools.append("target_aware_analysis")
 
-        # Rule 5: Always close with viz, charts, and insights
-        tools += ["visualization_recommendation", "chart_generation", "insight_generation"]
+        tools.extend([
+            "visualization_recommendation",
+            "chart_generation",
+            "insight_generation",
+        ])
 
-        return tools
+        # Preserve order while removing duplicates
+        deduped = []
+        seen = set()
+        for name in tools:
+            if name not in seen:
+                deduped.append(name)
+                seen.add(name)
+        return deduped
 
-    def run(self) -> dict:
-        """Execute selected tools and return consolidated results.
+    def run(self) -> dict[str, Any]:
+        tool_impl = EDATools(self.df, self.profile, self.run_dir)
+        registry = ToolRegistry(build_tool_map(tool_impl))
 
-        Returns
-        -------
-        dict with keys: tool_results, insights, chart_paths, tool_log, recommendations
-        """
-        selected = self._select_tools()
-        tool_results: dict = {}
-        tool_log: list = []
-        chart_paths: list = []
-        insights: list = []
-        recommendations: list = []
+        selected_tools = registry.validate(self.select_tools())
+        state: dict[str, Any] = {
+            "tool_results": {},
+            "selected_tools": selected_tools,
+        }
+        tool_log: list[dict[str, Any]] = []
 
-        for tool_name in selected:
+        for step_idx, tool_name in enumerate(selected_tools, start=1):
             start = time.perf_counter()
+            started_at = self._timestamp()
+            status = "success"
+            error_message = ""
+
             try:
-                fn = get_tool(tool_name)
-
-                kwargs: dict = {"mode": "rule", "output_dir": self.output_dir}
-                if tool_name == "chart_generation":
-                    kwargs["recommendations"] = recommendations
-                if tool_name == "insight_generation":
-                    kwargs["tool_results"] = tool_results
-
-                result = fn(self.df, self.profile, **kwargs)
-                duration = time.perf_counter() - start
-
-                tool_results[tool_name] = result
-                tool_log.append({
-                    "tool_name": tool_name,
-                    "status": "success",
-                    "duration_seconds": round(duration, 4),
-                    "error_message": None,
-                })
-
-                if tool_name == "visualization_recommendation":
-                    recommendations = result if isinstance(result, list) else []
-                if tool_name == "chart_generation" and isinstance(result, dict):
-                    chart_paths = result.get("chart_paths", [])
-                if tool_name == "insight_generation" and isinstance(result, dict):
-                    insights = result.get("insights", [])
-
+                result = registry.execute(tool_name, state)
+                state["tool_results"][tool_name] = result
             except Exception as exc:
-                duration = time.perf_counter() - start
-                tool_log.append({
-                    "tool_name": tool_name,
-                    "status": "error",
-                    "duration_seconds": round(duration, 4),
-                    "error_message": str(exc),
-                })
-                tool_results[tool_name] = {"error": str(exc)}
+                status = "error"
+                error_message = str(exc)
+                state["tool_results"][tool_name] = {"error": str(exc)}
 
+            duration = time.perf_counter() - start
+            tool_log.append(
+                {
+                    "step": step_idx,
+                    "tool_name": tool_name,
+                    "status": status,
+                    "runtime_seconds": round(duration, 4),
+                    "started_at_utc": started_at,
+                    "error_message": error_message,
+                }
+            )
+
+        tool_results = state["tool_results"]
         return {
+            "selected_tools": selected_tools,
             "tool_results": tool_results,
-            "insights": insights,
-            "chart_paths": chart_paths,
             "tool_log": tool_log,
-            "recommendations": recommendations,
+            "insights": tool_results.get("insight_generation", {}).get("insights", []),
+            "recommendations": tool_results.get("visualization_recommendation", {}).get("recommendations", []),
+            "chart_paths": tool_results.get("chart_generation", {}).get("chart_paths", []),
+            "llm_notes": "",
         }

@@ -1,0 +1,23 @@
+{
+  "dataset_name": "adult_income",
+  "mode": "fixed",
+  "strategy_mode": "fixed",
+  "llm_label": "",
+  "runtime_seconds": 2.0387,
+  "number_of_tools_called": 10,
+  "number_of_insights_generated": 8,
+  "number_of_charts_generated": 15,
+  "completeness_score": 10.0,
+  "insight_quality_score": 9.5,
+  "insight_relevance_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.5,
+  "flesch_reading_ease": 34.609,
+  "readability_score": 3.461,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 10.0,
+  "overall_quality_score": 9.307
+}

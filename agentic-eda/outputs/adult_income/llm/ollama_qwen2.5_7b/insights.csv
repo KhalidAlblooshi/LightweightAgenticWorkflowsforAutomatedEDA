@@ -1,0 +1,6 @@
+source_tool,insight,insight_id
+dataset_overview,Dataset contains 32560 rows and 15 columns.,1
+missing_value_analysis,"Missing data affects 9061 cells (1.86%); most impacted columns: occupation (2143), workclass (2127), native_country (903).",2
+correlation_analysis,Strongest absolute correlation is between education_num and hours_per_week (r=0.148).,3
+target_aware_analysis,"Target class distribution: <=50K=24499, >50K=7767.",4
+target_aware_analysis,ANOVA for 'age' across target 'income' groups: p-value=0.,5

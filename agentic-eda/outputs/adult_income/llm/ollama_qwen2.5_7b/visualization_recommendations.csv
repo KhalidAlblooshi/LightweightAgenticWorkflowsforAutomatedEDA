@@ -1,0 +1,6 @@
+chart_type,x,y,title,reason,priority
+missing_bar,column,missing_count,Missing values by column,Columns with missing values were detected.,1
+bar,income,count,Category frequencies for income,Categorical frequency comparison.,2
+bar,race,count,Category frequencies for race,Categorical frequency comparison.,2
+bar,relationship,count,Category frequencies for relationship,Categorical frequency comparison.,2
+bar,sex,count,Category frequencies for sex,Categorical frequency comparison.,2

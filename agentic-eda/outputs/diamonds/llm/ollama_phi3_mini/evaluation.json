@@ -1,0 +1,23 @@
+{
+  "dataset_name": "diamonds",
+  "mode": "llm__ollama_phi3_mini",
+  "strategy_mode": "llm",
+  "llm_label": "ollama_phi3_mini",
+  "runtime_seconds": 4.2446,
+  "number_of_tools_called": 10,
+  "number_of_insights_generated": 10,
+  "number_of_charts_generated": 14,
+  "completeness_score": 10.0,
+  "insight_quality_score": 9.5,
+  "insight_relevance_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.2,
+  "flesch_reading_ease": 40.137,
+  "readability_score": 4.014,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 7.49,
+  "overall_quality_score": 8.908
+}

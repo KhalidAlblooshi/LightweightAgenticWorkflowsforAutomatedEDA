@@ -1,49 +1,44 @@
-"""Tool registry — maps tool names to their callable implementations."""
+"""Safe tool registry for agent execution."""
 
-from src.eda_tools import (
-    chart_generation,
-    categorical_summary,
-    correlation_analysis,
-    dataset_overview,
-    duplicate_analysis,
-    insight_generation,
-    missing_value_analysis,
-    numeric_summary,
-    outlier_detection,
-    target_aware_analysis,
-    visualization_recommendation,
-)
+from __future__ import annotations
 
-TOOL_REGISTRY: dict = {
-    "dataset_overview": dataset_overview,
-    "missing_value_analysis": missing_value_analysis,
-    "duplicate_analysis": duplicate_analysis,
-    "numeric_summary": numeric_summary,
-    "categorical_summary": categorical_summary,
-    "correlation_analysis": correlation_analysis,
-    "outlier_detection": outlier_detection,
-    "target_aware_analysis": target_aware_analysis,
-    "visualization_recommendation": visualization_recommendation,
-    "chart_generation": chart_generation,
-    "insight_generation": insight_generation,
-}
+from typing import Any, Callable
+
+SAFE_TOOL_NAMES = [
+    "dataset_overview",
+    "missing_value_analysis",
+    "duplicate_analysis",
+    "numeric_summary",
+    "categorical_summary",
+    "correlation_analysis",
+    "outlier_detection",
+    "target_aware_analysis",
+    "visualization_recommendation",
+    "chart_generation",
+    "insight_generation",
+]
 
 
-def get_tool(name: str):
-    """Return the callable registered under *name*.
+class ToolRegistry:
+    """Validates and executes only pre-approved tools."""
 
-    Raises
-    ------
-    KeyError
-        When no tool with the given name is registered.
-    """
-    if name not in TOOL_REGISTRY:
-        raise KeyError(
-            f"Unknown tool '{name}'. Available tools: {list(TOOL_REGISTRY.keys())}"
-        )
-    return TOOL_REGISTRY[name]
+    def __init__(self, tools: dict[str, Callable[[dict[str, Any]], dict[str, Any]]]) -> None:
+        missing = [name for name in SAFE_TOOL_NAMES if name not in tools]
+        if missing:
+            raise ValueError(f"Missing tool implementations for: {missing}")
+        self._tools = tools
 
+    @property
+    def allowed_tools(self) -> list[str]:
+        return SAFE_TOOL_NAMES.copy()
 
-def list_tools() -> list:
-    """Return a sorted list of registered tool names."""
-    return sorted(TOOL_REGISTRY.keys())
+    def validate(self, tool_names: list[str]) -> list[str]:
+        invalid = [name for name in tool_names if name not in SAFE_TOOL_NAMES]
+        if invalid:
+            raise ValueError(f"Unsupported tools requested: {invalid}")
+        return tool_names
+
+    def execute(self, tool_name: str, state: dict[str, Any]) -> dict[str, Any]:
+        if tool_name not in SAFE_TOOL_NAMES:
+            raise ValueError(f"Tool not allowed: {tool_name}")
+        return self._tools[tool_name](state)

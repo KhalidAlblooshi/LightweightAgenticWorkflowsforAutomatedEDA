@@ -1,0 +1,11 @@
+source_tool,insight,insight_id
+dataset_overview,Dataset contains 891 rows and 11 columns.,1
+missing_value_analysis,"Missing data affects 957 cells (9.76%); most impacted columns: Cabin (687), Age (186), Embarked (14).",2
+numeric_summary,"Pclass has mean 2.313, std 0.834, and spans [1.000, 3.000].",3
+numeric_summary,"Age has mean 29.737, std 14.567, and spans [0.420, 80.000].",4
+numeric_summary,"SibSp has mean 0.511, std 1.071, and spans [0.000, 8.000].",5
+correlation_analysis,Strongest absolute correlation is between Pclass and Fare (r=-0.549).,6
+outlier_detection,"Column Parch has the highest outlier load (212 rows, 24.04%).",7
+target_aware_analysis,"Target class distribution: 0.0=543, 1.0=341.",8
+target_aware_analysis,ANOVA for 'Pclass' across target 'Survived' groups: p-value=4.052e-24.,9
+target_aware_analysis,ANOVA for 'Age' across target 'Survived' groups: p-value=0.04677.,10

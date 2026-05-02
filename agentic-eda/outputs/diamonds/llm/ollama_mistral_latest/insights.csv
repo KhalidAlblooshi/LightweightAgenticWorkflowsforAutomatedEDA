@@ -1,0 +1,11 @@
+source_tool,insight,insight_id
+dataset_overview,Dataset contains 53940 rows and 10 columns.,1
+missing_value_analysis,"Missing data affects 2690 cells (0.50%); most impacted columns: cut (287), depth (284), y (281).",2
+numeric_summary,"carat has mean 0.798, std 0.474, and spans [0.200, 5.010].",3
+numeric_summary,"depth has mean 61.750, std 1.433, and spans [43.000, 79.000].",4
+numeric_summary,"table has mean 57.458, std 2.235, and spans [43.000, 95.000].",5
+correlation_analysis,Strongest absolute correlation is between carat and x (r=0.975).,6
+outlier_detection,"Column price has the highest outlier load (3523 rows, 6.56%).",7
+target_aware_analysis,Target 'price' correlation with 'carat' is 0.922.,8
+target_aware_analysis,Target 'price' correlation with 'depth' is -0.010.,9
+target_aware_analysis,Target 'price' correlation with 'table' is 0.127.,10

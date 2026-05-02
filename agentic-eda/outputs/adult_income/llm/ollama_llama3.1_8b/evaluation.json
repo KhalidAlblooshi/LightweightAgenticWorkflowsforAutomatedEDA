@@ -1,0 +1,23 @@
+{
+  "dataset_name": "adult_income",
+  "mode": "llm__ollama_llama3.1_8b",
+  "strategy_mode": "llm",
+  "llm_label": "ollama_llama3.1_8b",
+  "runtime_seconds": 5.9522,
+  "number_of_tools_called": 11,
+  "number_of_insights_generated": 10,
+  "number_of_charts_generated": 15,
+  "completeness_score": 10.0,
+  "insight_quality_score": 9.75,
+  "insight_relevance_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.4,
+  "flesch_reading_ease": 37.121,
+  "readability_score": 3.712,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 6.222,
+  "overall_quality_score": 8.758
+}

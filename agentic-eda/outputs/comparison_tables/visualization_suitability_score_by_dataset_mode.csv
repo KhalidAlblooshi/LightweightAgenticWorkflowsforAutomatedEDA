@@ -1,0 +1,4 @@
+dataset_name,fixed,llm__ollama_gemma2_2b,llm__ollama_llama3.1_8b,llm__ollama_llama3.2_3b,llm__ollama_mistral_latest,llm__ollama_phi3_mini,llm__ollama_phi4_latest,llm__ollama_qwen2.5_3b,llm__ollama_qwen2.5_7b,llm__ollama_smollm2_1.7b,llm__ollama_tinyllama_latest,rule
+adult_income,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0
+diamonds,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0
+titanic_style,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0

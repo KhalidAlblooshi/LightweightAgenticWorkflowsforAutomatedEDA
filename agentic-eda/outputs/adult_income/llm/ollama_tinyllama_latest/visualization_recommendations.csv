@@ -1,0 +1,16 @@
+chart_type,x,y,title,reason,priority
+correlation_heatmap,numeric_features,numeric_features,Correlation heatmap,Multiple numeric columns are available.,1
+missing_bar,column,missing_count,Missing values by column,Columns with missing values were detected.,1
+scatter,education_num,hours_per_week,Strongest numeric correlation,Useful for validating linear trend strength.,1
+bar,income,count,Category frequencies for income,Categorical frequency comparison.,2
+bar,race,count,Category frequencies for race,Categorical frequency comparison.,2
+bar,relationship,count,Category frequencies for relationship,Categorical frequency comparison.,2
+bar,sex,count,Category frequencies for sex,Categorical frequency comparison.,2
+histogram,age,,Distribution of age,Numeric distribution overview.,2
+histogram,capital_gain,,Distribution of capital_gain,Numeric distribution overview.,2
+histogram,capital_loss,,Distribution of capital_loss,Numeric distribution overview.,2
+histogram,education_num,,Distribution of education_num,Numeric distribution overview.,2
+histogram,fnlwgt,,Distribution of fnlwgt,Numeric distribution overview.,2
+histogram,hours_per_week,,Distribution of hours_per_week,Numeric distribution overview.,2
+target_box,income,education_num,education_num by target (income),Highlights class-wise numeric spread.,3
+target_box,income,age,age by target (income),Highlights class-wise numeric spread.,3

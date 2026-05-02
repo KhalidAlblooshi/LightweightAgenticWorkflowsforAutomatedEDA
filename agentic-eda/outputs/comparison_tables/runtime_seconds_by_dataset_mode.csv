@@ -1,0 +1,4 @@
+dataset_name,fixed,llm__ollama_gemma2_2b,llm__ollama_llama3.1_8b,llm__ollama_llama3.2_3b,llm__ollama_mistral_latest,llm__ollama_phi3_mini,llm__ollama_phi4_latest,llm__ollama_qwen2.5_3b,llm__ollama_qwen2.5_7b,llm__ollama_smollm2_1.7b,llm__ollama_tinyllama_latest,rule
+adult_income,2.0387,4.7323,5.9522,4.4219,7.8678,4.6542,27.8184,4.2527,5.29,3.9898,4.6623,2.1411
+diamonds,3.0729,4.3646,5.3254,3.8029,9.7227,4.2446,28.9662,3.7197,5.2624,3.5475,5.689,2.4336
+titanic_style,1.3813,4.0545,6.4833,3.5233,7.0572,4.476,31.1014,3.1103,5.2542,3.1391,2.4129,1.4065

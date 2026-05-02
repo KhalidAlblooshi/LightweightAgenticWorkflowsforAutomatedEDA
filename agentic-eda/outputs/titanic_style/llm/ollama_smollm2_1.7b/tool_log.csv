@@ -1,0 +1,12 @@
+step,tool_name,status,runtime_seconds,started_at_utc,error_message
+1,dataset_overview,success,0.002,2026-05-01T13:51:01.525788+00:00,
+2,missing_value_analysis,success,0.0006,2026-05-01T13:51:01.527711+00:00,
+3,duplicate_analysis,success,0.0011,2026-05-01T13:51:01.527711+00:00,
+4,numeric_summary,success,0.0115,2026-05-01T13:51:01.528706+00:00,
+5,categorical_summary,success,0.0015,2026-05-01T13:51:01.540737+00:00,
+6,correlation_analysis,success,0.0009,2026-05-01T13:51:01.541743+00:00,
+7,outlier_detection,success,0.0049,2026-05-01T13:51:01.542740+00:00,
+8,target_aware_analysis,success,0.0081,2026-05-01T13:51:01.548164+00:00,
+9,visualization_recommendation,success,0.0002,2026-05-01T13:51:01.556197+00:00,
+10,chart_generation,success,1.1821,2026-05-01T13:51:01.556197+00:00,
+11,insight_generation,success,0.0053,2026-05-01T13:51:02.738256+00:00,

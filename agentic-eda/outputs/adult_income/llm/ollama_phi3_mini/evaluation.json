@@ -1,0 +1,23 @@
+{
+  "dataset_name": "adult_income",
+  "mode": "llm__ollama_phi3_mini",
+  "strategy_mode": "llm",
+  "llm_label": "ollama_phi3_mini",
+  "runtime_seconds": 4.6542,
+  "number_of_tools_called": 9,
+  "number_of_insights_generated": 8,
+  "number_of_charts_generated": 15,
+  "completeness_score": 8.571,
+  "insight_quality_score": 9.25,
+  "insight_relevance_score": 10.0,
+  "redundancy_score": 10.0,
+  "clarity_score": 9.25,
+  "flesch_reading_ease": 34.64,
+  "readability_score": 3.464,
+  "visualization_suitability_score": 10.0,
+  "error_count": 0,
+  "fallback_used": false,
+  "quality_warnings": [],
+  "efficiency_score": 6.915,
+  "overall_quality_score": 8.729
+}

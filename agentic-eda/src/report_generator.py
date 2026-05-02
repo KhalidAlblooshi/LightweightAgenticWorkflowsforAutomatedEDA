@@ -1,228 +1,190 @@
-"""Report generator — writes a Markdown EDA report."""
+"""Markdown report generation for each dataset/mode execution."""
 
-from datetime import datetime
+from __future__ import annotations
+
 from pathlib import Path
+from typing import Any
 
-from src.utils import ensure_dir
+from tabulate import tabulate
+
+from config import SETTINGS
+from src.utils import write_text
+
+
+
+def _markdown_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
+    if not rows:
+        return "No data available."
+    table_rows = [[row.get(col, "") for col in columns] for row in rows]
+    return tabulate(table_rows, headers=columns, tablefmt="github")
+
 
 
 def generate_report(
     dataset_name: str,
     mode: str,
-    profile: dict,
-    tool_results: dict,
-    insights: list,
-    chart_paths: list,
-    recommendations: list,
+    selected_tools: list[str],
+    profile: dict[str, Any],
+    tool_results: dict[str, Any],
     output_dir: Path,
+    llm_notes: str | None = None,
 ) -> str:
-    """Build a Markdown report and write it to *output_dir*/report.md.
-
-    Returns
-    -------
-    The rendered Markdown string.
-    """
-    ensure_dir(output_dir)
-    lines = []
-    a = lines.append
-
-    a(f"# EDA Report: {dataset_name} — {mode} mode")
-    a(f"\n_Generated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}_\n")
-
-    # -------------------------------------------------------------------
-    # Dataset Overview
-    # -------------------------------------------------------------------
-    a("## Dataset Overview\n")
-    a(f"| Property | Value |")
-    a(f"|---|---|")
-    a(f"| Dataset name | {dataset_name} |")
-    a(f"| Agent mode | {mode} |")
-    a(f"| Rows | {profile['n_rows']:,} |")
-    a(f"| Columns | {profile['n_cols']} |")
-    a(f"| Numeric columns | {len(profile['numeric_columns'])} |")
-    a(f"| Categorical columns | {len(profile['categorical_columns'])} |")
-    a(f"| Datetime columns | {len(profile['datetime_columns'])} |")
-    a(f"| Likely target column | {profile.get('likely_target_col') or 'None'} |")
-
-    ov = tool_results.get("dataset_overview", {})
-    if ov:
-        a(f"| Memory usage (KB) | {ov.get('memory_usage_kb', 'N/A')} |")
-    a("")
-
-    if profile["numeric_columns"]:
-        a(f"**Numeric columns:** {', '.join(profile['numeric_columns'])}\n")
-    if profile["categorical_columns"]:
-        a(f"**Categorical columns:** {', '.join(profile['categorical_columns'])}\n")
-
-    # -------------------------------------------------------------------
-    # Data Quality
-    # -------------------------------------------------------------------
-    a("## Data Quality\n")
-
-    mv = tool_results.get("missing_value_analysis", {})
+    """Create required report.md content and write it to output directory."""
+    overview = tool_results.get("dataset_overview", {})
+    missing = tool_results.get("missing_value_analysis", {})
     dup = tool_results.get("duplicate_analysis", {})
-
-    a("### Missing Values\n")
-    if mv:
-        a(f"- Total missing cells: **{mv.get('total_missing_cells', 0):,}** "
-          f"({mv.get('overall_missing_pct', 0):.1f}%)")
-        high_miss = mv.get("columns_above_20pct_missing", [])
-        if high_miss:
-            a(f"- Columns with >20% missing: {', '.join(high_miss)}")
-        per_col = mv.get("per_column", {})
-        if per_col:
-            missing_cols = {c: s for c, s in per_col.items() if s["missing_count"] > 0}
-            if missing_cols:
-                a("\n| Column | Missing Count | Missing % |")
-                a("|---|---|---|")
-                for col, s in missing_cols.items():
-                    a(f"| {col} | {s['missing_count']} | {s['missing_pct']}% |")
-            else:
-                a("- No missing values found.")
-    else:
-        a("_Missing value analysis not performed._")
-    a("")
-
-    a("### Duplicates\n")
-    if dup:
-        a(f"- Duplicate rows: **{dup.get('duplicate_row_count', 0)}** "
-          f"({dup.get('duplicate_row_pct', 0):.1f}%)")
-    else:
-        a("_Duplicate analysis not performed._")
-    a("")
-
-    # -------------------------------------------------------------------
-    # Statistical Analysis
-    # -------------------------------------------------------------------
-    a("## Statistical Analysis\n")
-
-    num_sum = tool_results.get("numeric_summary", {})
-    if num_sum:
-        a("### Numeric Summary\n")
-        a("| Column | Mean | Median | Std | Min | Max | Skewness |")
-        a("|---|---|---|---|---|---|---|")
-        for col, s in num_sum.items():
-            if isinstance(s, dict) and "mean" in s:
-                a(f"| {col} | {s['mean']:.4f} | {s['median']:.4f} | "
-                  f"{s['std']:.4f} | {s['min']:.4f} | {s['max']:.4f} | "
-                  f"{s.get('skewness', 'N/A')} |")
-        a("")
-
-    cat_sum = tool_results.get("categorical_summary", {})
-    if cat_sum:
-        a("### Categorical Summary\n")
-        for col, s in cat_sum.items():
-            if isinstance(s, dict) and "unique_count" in s:
-                a(f"**{col}** — {s['unique_count']} unique values, "
-                  f"mode: `{s.get('mode', 'N/A')}`\n")
-                top = s.get("top_value_counts", {})
-                if top:
-                    a("| Value | Count |")
-                    a("|---|---|")
-                    for val, cnt in list(top.items())[:5]:
-                        a(f"| {val} | {cnt} |")
-                a("")
-
+    numeric = tool_results.get("numeric_summary", {})
+    categorical = tool_results.get("categorical_summary", {})
     corr = tool_results.get("correlation_analysis", {})
-    if corr and not corr.get("skipped"):
-        a("### Top Correlated Pairs\n")
-        pairs = corr.get("top_correlated_pairs", [])
-        if pairs:
-            a("| Column 1 | Column 2 | Pearson r |")
-            a("|---|---|---|")
-            for p in pairs:
-                a(f"| {p['col1']} | {p['col2']} | {p['correlation']:.4f} |")
-        a("")
+    outlier = tool_results.get("outlier_detection", {})
+    target = tool_results.get("target_aware_analysis", {})
+    viz = tool_results.get("visualization_recommendation", {})
+    chart_gen = tool_results.get("chart_generation", {})
+    insight_payload = tool_results.get("insight_generation", {})
 
-    out_res = tool_results.get("outlier_detection", {})
-    if out_res:
-        a("### Outlier Detection (IQR method)\n")
-        a("| Column | Outlier Count | Outlier % |")
-        a("|---|---|---|")
-        for col, s in out_res.items():
-            if isinstance(s, dict) and "outlier_count" in s:
-                a(f"| {col} | {s['outlier_count']} | {s['outlier_pct']}% |")
-        a("")
+    insights = insight_payload.get("insights", [])
+    recommendations = viz.get("recommendations", [])
+    chart_paths = chart_gen.get("chart_paths", [])
 
-    ta = tool_results.get("target_aware_analysis", {})
-    if ta and not ta.get("skipped"):
-        a("### Target-Aware Analysis\n")
-        a(f"- Target column: **{ta.get('target_col', 'N/A')}**")
-        a(f"- Target type: {ta.get('target_type', 'N/A')}")
-        if ta.get("class_distribution"):
-            a("\n**Class distribution:**\n")
-            a("| Class | % |")
-            a("|---|---|")
-            for cls, pct in ta["class_distribution"].items():
-                a(f"| {cls} | {pct}% |")
-        a("")
+    top_numeric = numeric.get("column_summaries", [])[:6]
+    top_categorical = categorical.get("column_summaries", [])[:6]
+    top_outliers = outlier.get("ranked_outlier_columns", [])[:6]
 
-    # -------------------------------------------------------------------
-    # Key Insights
-    # -------------------------------------------------------------------
-    a("## Key Insights\n")
+    lines: list[str] = []
+    lines.append(f"# Automated EDA Report: {dataset_name}")
+    lines.append("")
+    lines.append("## Dataset Name")
+    lines.append(dataset_name)
+    lines.append("")
+    lines.append("## Workflow Mode")
+    lines.append(mode)
+    lines.append("")
+    lines.append("## Selected Tools")
+    lines.append("\n".join(f"- {tool}" for tool in selected_tools) or "- None")
+    lines.append("")
+
+    if llm_notes:
+        lines.append("## LLM Planning Notes")
+        lines.append(llm_notes)
+        lines.append("")
+
+    lines.append("## Dataset Overview")
+    lines.append(
+        f"Rows: {overview.get('row_count', profile.get('row_count', 0))}, "
+        f"Columns: {overview.get('column_count', profile.get('column_count', 0))}, "
+        f"Numeric: {overview.get('numeric_column_count', len(profile.get('numeric_columns', [])))}, "
+        f"Categorical: {overview.get('categorical_column_count', len(profile.get('categorical_columns', [])))}"
+    )
+    lines.append("")
+
+    lines.append("## Data Quality Findings")
+    lines.append(
+        f"Missing cells: {missing.get('total_missing_cells', 0)} "
+        f"({missing.get('missing_cell_percentage', 0.0):.2f}%)."
+    )
+    lines.append(
+        f"Duplicate rows: {dup.get('duplicate_rows', 0)} "
+        f"({dup.get('duplicate_percentage', 0.0):.2f}%)."
+    )
+    if missing.get("top_missing_columns"):
+        lines.append("Top missing columns:")
+        lines.append(
+            _markdown_table(
+                missing.get("top_missing_columns", [])[:10],
+                ["column", "missing_count", "missing_percentage"],
+            )
+        )
+    lines.append("")
+
+    lines.append("## Statistical Findings")
+    if top_numeric:
+        lines.append("### Numeric Summary")
+        lines.append(
+            _markdown_table(
+                top_numeric,
+                ["column", "mean", "std", "min", "q1", "median", "q3", "max", "skewness"],
+            )
+        )
+    if top_categorical:
+        lines.append("### Categorical Summary")
+        cat_rows: list[dict[str, Any]] = []
+        for row in top_categorical:
+            first = row.get("top_categories", [])[:3]
+            cat_rows.append(
+                {
+                    "column": row.get("column"),
+                    "unique_count": row.get("unique_count"),
+                    "top_categories": ", ".join(
+                        f"{x['category']} ({x['count']})" for x in first
+                    ),
+                }
+            )
+        lines.append(_markdown_table(cat_rows, ["column", "unique_count", "top_categories"]))
+
+    if corr.get("strongest_pair"):
+        pair = corr["strongest_pair"]
+        lines.append("### Correlation Highlights")
+        lines.append(
+            f"Strongest pair: {pair['feature_1']} vs {pair['feature_2']} "
+            f"(r={pair['correlation']:.3f})."
+        )
+
+    if top_outliers:
+        lines.append("### Outlier Detection")
+        lines.append(
+            _markdown_table(
+                top_outliers,
+                ["column", "outlier_count", "outlier_percentage", "lower_bound", "upper_bound"],
+            )
+        )
+
+    if target and target.get("analysis_type") != "none":
+        lines.append("### Target-Aware Analysis")
+        lines.append(f"Target column: {target.get('target_column')}")
+        for finding in target.get("findings", [])[:8]:
+            lines.append(f"- {finding}")
+    lines.append("")
+
+    lines.append("## Key Insights")
     if insights:
-        for i, insight in enumerate(insights, 1):
-            a(f"{i}. {insight}")
+        for row in insights:
+            lines.append(f"- {row.get('insight')}")
     else:
-        a("_No insights generated._")
-    a("")
+        lines.append("No insights were generated.")
+    lines.append("")
 
-    # -------------------------------------------------------------------
-    # Visualization Recommendations
-    # -------------------------------------------------------------------
-    a("## Visualization Recommendations\n")
+    lines.append("## Visualization Recommendations")
     if recommendations:
-        a("| # | Chart Type | Columns | Rationale |")
-        a("|---|---|---|---|")
-        for i, rec in enumerate(recommendations, 1):
-            cols_str = ", ".join(rec.get("columns", []))
-            a(f"| {i} | {rec.get('chart_type', '')} | {cols_str} | "
-              f"{rec.get('rationale', '')} |")
+        lines.append(
+            _markdown_table(
+                recommendations,
+                ["chart_type", "x", "y", "title", "reason", "priority"],
+            )
+        )
     else:
-        a("_No visualizations recommended._")
-    a("")
+        lines.append("No visualization recommendations available.")
+    lines.append("")
 
-    # -------------------------------------------------------------------
-    # Generated Charts
-    # -------------------------------------------------------------------
-    a("## Generated Charts\n")
+    lines.append("## Chart List")
     if chart_paths:
-        for path in chart_paths:
-            fname = Path(path).name
-            a(f"- `{fname}`")
+        for chart in chart_paths:
+            lines.append(f"- {chart}")
     else:
-        a("_No charts generated._")
-    a("")
+        lines.append("No charts were generated.")
+    lines.append("")
 
-    # -------------------------------------------------------------------
-    # Limitations
-    # -------------------------------------------------------------------
-    a("## Limitations\n")
-    a(
-        "- This report was generated automatically and may not capture all nuances of the data.\n"
-        "- Statistical tests (normality, significance) are not performed.\n"
-        "- Insights are heuristic and should be validated by a domain expert.\n"
-        "- LLM-based tool selection may vary across runs.\n"
-        "- Visualizations are limited to the most informative subset of columns."
-    )
-    a("")
+    lines.append("## Limitations")
+    lines.append("- Results depend on heuristic target detection and may not match domain intent.")
+    lines.append("- Outlier logic is IQR-based and may over-flag skewed distributions.")
+    lines.append("- LLM mode can fall back to rules when planning output is invalid or unavailable.")
+    lines.append("")
 
-    # -------------------------------------------------------------------
-    # Reproducibility Notes
-    # -------------------------------------------------------------------
-    a("## Reproducibility Notes\n")
-    a(
-        "- Random seed: 42\n"
-        "- All synthetic data generated with `numpy.random.seed(42)`.\n"
-        f"- Agent mode: **{mode}**\n"
-        "- To reproduce: `python main.py --dataset <path> --mode " + mode + "`"
-    )
-    a("")
+    lines.append("## Reproducibility Notes")
+    lines.append(f"- Random seed: {SETTINGS.random_seed}")
+    lines.append("- Charts generated with matplotlib only (no seaborn).")
+    lines.append("- Tool execution restricted to safe registry entries.")
+    lines.append("- Input data source: CSV files under data/sample/.")
 
-    markdown = "\n".join(lines)
-
-    report_path = output_dir / "report.md"
-    report_path.write_text(markdown, encoding="utf-8")
-
-    return markdown
+    report_text = "\n".join(lines) + "\n"
+    write_text(output_dir / "report.md", report_text)
+    return report_text

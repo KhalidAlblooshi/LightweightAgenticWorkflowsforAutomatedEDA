@@ -1,0 +1,867 @@
+{
+  "dataset_overview": {
+    "row_count": 32560,
+    "column_count": 15,
+    "numeric_column_count": 6,
+    "categorical_column_count": 9,
+    "memory_usage_bytes": 18354176,
+    "column_types": {
+      "age": "float64",
+      "workclass": "str",
+      "fnlwgt": "float64",
+      "education": "str",
+      "education_num": "float64",
+      "marital_status": "str",
+      "occupation": "str",
+      "relationship": "str",
+      "race": "str",
+      "sex": "str",
+      "capital_gain": "float64",
+      "capital_loss": "float64",
+      "hours_per_week": "float64",
+      "native_country": "str",
+      "income": "str"
+    },
+    "sample_rows": [
+      {
+        "age": 50.0,
+        "workclass": "Self-emp-not-inc",
+        "fnlwgt": 83311.0,
+        "education": "Bachelors",
+        "education_num": 13.0,
+        "marital_status": "Married-civ-spouse",
+        "occupation": "Exec-managerial",
+        "relationship": "Husband",
+        "race": "White",
+        "sex": "Male",
+        "capital_gain": 0.0,
+        "capital_loss": 0.0,
+        "hours_per_week": 13.0,
+        "native_country": "United-States",
+        "income": "<=50K"
+      },
+      {
+        "age": 38.0,
+        "workclass": "Private",
+        "fnlwgt": 215646.0,
+        "education": "HS-grad",
+        "education_num": 9.0,
+        "marital_status": "Divorced",
+        "occupation": "Handlers-cleaners",
+        "relationship": "Not-in-family",
+        "race": "White",
+        "sex": "Male",
+        "capital_gain": 0.0,
+        "capital_loss": 0.0,
+        "hours_per_week": 40.0,
+        "native_country": "United-States",
+        "income": "<=50K"
+      },
+      {
+        "age": 53.0,
+        "workclass": "Private",
+        "fnlwgt": 234721.0,
+        "education": "11th",
+        "education_num": 7.0,
+        "marital_status": "Married-civ-spouse",
+        "occupation": "Handlers-cleaners",
+        "relationship": "Husband",
+        "race": "Black",
+        "sex": "Male",
+        "capital_gain": 0.0,
+        "capital_loss": 0.0,
+        "hours_per_week": 40.0,
+        "native_country": "United-States",
+        "income": "<=50K"
+      },
+      {
+        "age": 28.0,
+        "workclass": "Private",
+        "fnlwgt": 338409.0,
+        "education": "Bachelors",
+        "education_num": 13.0,
+        "marital_status": "Married-civ-spouse",
+        "occupation": "Prof-specialty",
+        "relationship": "Wife",
+        "race": "Black",
+        "sex": "Female",
+        "capital_gain": 0.0,
+        "capital_loss": 0.0,
+        "hours_per_week": 40.0,
+        "native_country": "Cuba",
+        "income": "<=50K"
+      },
+      {
+        "age": 37.0,
+        "workclass": "Private",
+        "fnlwgt": 284582.0,
+        "education": "Masters",
+        "education_num": 14.0,
+        "marital_status": "Married-civ-spouse",
+        "occupation": "Exec-managerial",
+        "relationship": "Wife",
+        "race": "White",
+        "sex": "Female",
+        "capital_gain": 0.0,
+        "capital_loss": 0.0,
+        "hours_per_week": 40.0,
+        "native_country": "United-States",
+        "income": "<=50K"
+      }
+    ]
+  },
+  "missing_value_analysis": {
+    "total_missing_cells": 9061,
+    "missing_cell_percentage": 1.8552416052416052,
+    "columns_with_missing": [
+      "occupation",
+      "workclass",
+      "native_country",
+      "education_num",
+      "fnlwgt",
+      "age",
+      "sex",
+      "race",
+      "capital_gain",
+      "relationship",
+      "education",
+      "marital_status",
+      "capital_loss",
+      "hours_per_week",
+      "income"
+    ],
+    "top_missing_columns": [
+      {
+        "column": "occupation",
+        "missing_count": 2143,
+        "missing_percentage": 6.581695331695332
+      },
+      {
+        "column": "workclass",
+        "missing_count": 2127,
+        "missing_percentage": 6.532555282555283
+      },
+      {
+        "column": "native_country",
+        "missing_count": 903,
+        "missing_percentage": 2.7733415233415233
+      },
+      {
+        "column": "education_num",
+        "missing_count": 364,
+        "missing_percentage": 1.117936117936118
+      },
+      {
+        "column": "fnlwgt",
+        "missing_count": 351,
+        "missing_percentage": 1.078009828009828
+      },
+      {
+        "column": "age",
+        "missing_count": 338,
+        "missing_percentage": 1.038083538083538
+      },
+      {
+        "column": "sex",
+        "missing_count": 336,
+        "missing_percentage": 1.0319410319410318
+      },
+      {
+        "column": "race",
+        "missing_count": 331,
+        "missing_percentage": 1.0165847665847665
+      },
+      {
+        "column": "capital_gain",
+        "missing_count": 330,
+        "missing_percentage": 1.0135135135135136
+      },
+      {
+        "column": "relationship",
+        "missing_count": 318,
+        "missing_percentage": 0.9766584766584766
+      },
+      {
+        "column": "education",
+        "missing_count": 314,
+        "missing_percentage": 0.9643734643734643
+      },
+      {
+        "column": "marital_status",
+        "missing_count": 306,
+        "missing_percentage": 0.9398034398034398
+      },
+      {
+        "column": "capital_loss",
+        "missing_count": 303,
+        "missing_percentage": 0.9305896805896805
+      },
+      {
+        "column": "hours_per_week",
+        "missing_count": 303,
+        "missing_percentage": 0.9305896805896805
+      },
+      {
+        "column": "income",
+        "missing_count": 294,
+        "missing_percentage": 0.9029484029484028
+      }
+    ]
+  },
+  "categorical_summary": {
+    "categorical_column_count": 9,
+    "excluded_identifier_like_columns": [],
+    "column_summaries": [
+      {
+        "column": "workclass",
+        "unique_count": 9,
+        "top_categories": [
+          {
+            "category": "Private",
+            "count": 22479,
+            "percentage": 69.03869778869779
+          },
+          {
+            "category": "Self-emp-not-inc",
+            "count": 2518,
+            "percentage": 7.733415233415234
+          },
+          {
+            "category": "<NA>",
+            "count": 2127,
+            "percentage": 6.532555282555283
+          },
+          {
+            "category": "Local-gov",
+            "count": 2070,
+            "percentage": 6.357493857493858
+          },
+          {
+            "category": "State-gov",
+            "count": 1286,
+            "percentage": 3.9496314496314495
+          },
+          {
+            "category": "Self-emp-inc",
+            "count": 1107,
+            "percentage": 3.39987714987715
+          },
+          {
+            "category": "Federal-gov",
+            "count": 953,
+            "percentage": 2.926904176904177
+          },
+          {
+            "category": "Without-pay",
+            "count": 13,
+            "percentage": 0.03992628992628993
+          },
+          {
+            "category": "Never-worked",
+            "count": 7,
+            "percentage": 0.0214987714987715
+          }
+        ]
+      },
+      {
+        "column": "education",
+        "unique_count": 17,
+        "top_categories": [
+          {
+            "category": "HS-grad",
+            "count": 10402,
+            "percentage": 31.947174447174447
+          },
+          {
+            "category": "Some-college",
+            "count": 7232,
+            "percentage": 22.21130221130221
+          },
+          {
+            "category": "Bachelors",
+            "count": 5304,
+            "percentage": 16.28992628992629
+          },
+          {
+            "category": "Masters",
+            "count": 1705,
+            "percentage": 5.236486486486487
+          },
+          {
+            "category": "Assoc-voc",
+            "count": 1364,
+            "percentage": 4.1891891891891895
+          },
+          {
+            "category": "11th",
+            "count": 1162,
+            "percentage": 3.5687960687960687
+          },
+          {
+            "category": "Assoc-acdm",
+            "count": 1054,
+            "percentage": 3.237100737100737
+          },
+          {
+            "category": "10th",
+            "count": 929,
+            "percentage": 2.8531941031941033
+          },
+          {
+            "category": "7th-8th",
+            "count": 634,
+            "percentage": 1.9471744471744472
+          },
+          {
+            "category": "Prof-school",
+            "count": 573,
+            "percentage": 1.7598280098280097
+          }
+        ]
+      },
+      {
+        "column": "marital_status",
+        "unique_count": 8,
+        "top_categories": [
+          {
+            "category": "Married-civ-spouse",
+            "count": 14820,
+            "percentage": 45.515970515970515
+          },
+          {
+            "category": "Never-married",
+            "count": 10579,
+            "percentage": 32.49078624078624
+          },
+          {
+            "category": "Divorced",
+            "count": 4410,
+            "percentage": 13.544226044226043
+          },
+          {
+            "category": "Separated",
+            "count": 1018,
+            "percentage": 3.1265356265356266
+          },
+          {
+            "category": "Widowed",
+            "count": 989,
+            "percentage": 3.0374692874692877
+          },
+          {
+            "category": "Married-spouse-absent",
+            "count": 415,
+            "percentage": 1.2745700245700244
+          },
+          {
+            "category": "<NA>",
+            "count": 306,
+            "percentage": 0.9398034398034398
+          },
+          {
+            "category": "Married-AF-spouse",
+            "count": 23,
+            "percentage": 0.07063882063882064
+          }
+        ]
+      },
+      {
+        "column": "occupation",
+        "unique_count": 15,
+        "top_categories": [
+          {
+            "category": "Prof-specialty",
+            "count": 4100,
+            "percentage": 12.592137592137592
+          },
+          {
+            "category": "Craft-repair",
+            "count": 4061,
+            "percentage": 12.472358722358724
+          },
+          {
+            "category": "Exec-managerial",
+            "count": 4023,
+            "percentage": 12.355651105651106
+          },
+          {
+            "category": "Adm-clerical",
+            "count": 3732,
+            "percentage": 11.461916461916461
+          },
+          {
+            "category": "Sales",
+            "count": 3609,
+            "percentage": 11.084152334152334
+          },
+          {
+            "category": "Other-service",
+            "count": 3265,
+            "percentage": 10.027641277641278
+          },
+          {
+            "category": "<NA>",
+            "count": 2143,
+            "percentage": 6.581695331695332
+          },
+          {
+            "category": "Machine-op-inspct",
+            "count": 1982,
+            "percentage": 6.087223587223587
+          },
+          {
+            "category": "Transport-moving",
+            "count": 1587,
+            "percentage": 4.874078624078624
+          },
+          {
+            "category": "Handlers-cleaners",
+            "count": 1359,
+            "percentage": 4.173832923832924
+          }
+        ]
+      },
+      {
+        "column": "relationship",
+        "unique_count": 7,
+        "top_categories": [
+          {
+            "category": "Husband",
+            "count": 13058,
+            "percentage": 40.10442260442261
+          },
+          {
+            "category": "Not-in-family",
+            "count": 8225,
+            "percentage": 25.261056511056513
+          },
+          {
+            "category": "Own-child",
+            "count": 5024,
+            "percentage": 15.429975429975428
+          },
+          {
+            "category": "Unmarried",
+            "count": 3410,
+            "percentage": 10.472972972972974
+          },
+          {
+            "category": "Wife",
+            "count": 1552,
+            "percentage": 4.766584766584766
+          },
+          {
+            "category": "Other-relative",
+            "count": 973,
+            "percentage": 2.9883292383292384
+          },
+          {
+            "category": "<NA>",
+            "count": 318,
+            "percentage": 0.9766584766584766
+          }
+        ]
+      },
+      {
+        "column": "race",
+        "unique_count": 6,
+        "top_categories": [
+          {
+            "category": "White",
+            "count": 27522,
+            "percentage": 84.52702702702702
+          },
+          {
+            "category": "Black",
+            "count": 3096,
+            "percentage": 9.50859950859951
+          },
+          {
+            "category": "Asian-Pac-Islander",
+            "count": 1033,
+            "percentage": 3.1726044226044228
+          },
+          {
+            "category": "<NA>",
+            "count": 331,
+            "percentage": 1.0165847665847665
+          },
+          {
+            "category": "Amer-Indian-Eskimo",
+            "count": 308,
+            "percentage": 0.945945945945946
+          },
+          {
+            "category": "Other",
+            "count": 270,
+            "percentage": 0.8292383292383292
+          }
+        ]
+      },
+      {
+        "column": "sex",
+        "unique_count": 3,
+        "top_categories": [
+          {
+            "category": "Male",
+            "count": 21543,
+            "percentage": 66.16400491400492
+          },
+          {
+            "category": "Female",
+            "count": 10681,
+            "percentage": 32.804054054054056
+          },
+          {
+            "category": "<NA>",
+            "count": 336,
+            "percentage": 1.0319410319410318
+          }
+        ]
+      },
+      {
+        "column": "native_country",
+        "unique_count": 42,
+        "top_categories": [
+          {
+            "category": "United-States",
+            "count": 28879,
+            "percentage": 88.69471744471744
+          },
+          {
+            "category": "<NA>",
+            "count": 903,
+            "percentage": 2.7733415233415233
+          },
+          {
+            "category": "Mexico",
+            "count": 638,
+            "percentage": 1.9594594594594597
+          },
+          {
+            "category": "Philippines",
+            "count": 197,
+            "percentage": 0.6050368550368551
+          },
+          {
+            "category": "Germany",
+            "count": 136,
+            "percentage": 0.41769041769041765
+          },
+          {
+            "category": "Canada",
+            "count": 118,
+            "percentage": 0.3624078624078624
+          },
+          {
+            "category": "Puerto-Rico",
+            "count": 113,
+            "percentage": 0.34705159705159705
+          },
+          {
+            "category": "El-Salvador",
+            "count": 105,
+            "percentage": 0.32248157248157244
+          },
+          {
+            "category": "India",
+            "count": 98,
+            "percentage": 0.300982800982801
+          },
+          {
+            "category": "Cuba",
+            "count": 93,
+            "percentage": 0.2856265356265356
+          }
+        ]
+      },
+      {
+        "column": "income",
+        "unique_count": 3,
+        "top_categories": [
+          {
+            "category": "<=50K",
+            "count": 24499,
+            "percentage": 75.242628992629
+          },
+          {
+            "category": ">50K",
+            "count": 7767,
+            "percentage": 23.854422604422602
+          },
+          {
+            "category": "<NA>",
+            "count": 294,
+            "percentage": 0.9029484029484028
+          }
+        ]
+      }
+    ]
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "age": {
+        "age": 1.0,
+        "fnlwgt": -0.0762,
+        "education_num": 0.0373,
+        "capital_gain": 0.0782,
+        "capital_loss": 0.057,
+        "hours_per_week": 0.0686
+      },
+      "fnlwgt": {
+        "age": -0.0762,
+        "fnlwgt": 1.0,
+        "education_num": -0.0433,
+        "capital_gain": -0.0007,
+        "capital_loss": -0.0117,
+        "hours_per_week": -0.0185
+      },
+      "education_num": {
+        "age": 0.0373,
+        "fnlwgt": -0.0433,
+        "education_num": 1.0,
+        "capital_gain": 0.1215,
+        "capital_loss": 0.0809,
+        "hours_per_week": 0.1484
+      },
+      "capital_gain": {
+        "age": 0.0782,
+        "fnlwgt": -0.0007,
+        "education_num": 0.1215,
+        "capital_gain": 1.0,
+        "capital_loss": -0.0314,
+        "hours_per_week": 0.0771
+      },
+      "capital_loss": {
+        "age": 0.057,
+        "fnlwgt": -0.0117,
+        "education_num": 0.0809,
+        "capital_gain": -0.0314,
+        "capital_loss": 1.0,
+        "hours_per_week": 0.0549
+      },
+      "hours_per_week": {
+        "age": 0.0686,
+        "fnlwgt": -0.0185,
+        "education_num": 0.1484,
+        "capital_gain": 0.0771,
+        "capital_loss": 0.0549,
+        "hours_per_week": 1.0
+      }
+    },
+    "strongest_pair": {
+      "feature_1": "education_num",
+      "feature_2": "hours_per_week",
+      "correlation": 0.14836213099162365,
+      "abs_correlation": 0.14836213099162365
+    },
+    "top_pairs": [
+      {
+        "feature_1": "education_num",
+        "feature_2": "hours_per_week",
+        "correlation": 0.14836213099162365,
+        "abs_correlation": 0.14836213099162365
+      },
+      {
+        "feature_1": "education_num",
+        "feature_2": "capital_gain",
+        "correlation": 0.12146919399392615,
+        "abs_correlation": 0.12146919399392615
+      },
+      {
+        "feature_1": "education_num",
+        "feature_2": "capital_loss",
+        "correlation": 0.08093259986710966,
+        "abs_correlation": 0.08093259986710966
+      },
+      {
+        "feature_1": "age",
+        "feature_2": "capital_gain",
+        "correlation": 0.07819302608569795,
+        "abs_correlation": 0.07819302608569795
+      },
+      {
+        "feature_1": "capital_gain",
+        "feature_2": "hours_per_week",
+        "correlation": 0.07708909638124534,
+        "abs_correlation": 0.07708909638124534
+      },
+      {
+        "feature_1": "age",
+        "feature_2": "fnlwgt",
+        "correlation": -0.07618785298051971,
+        "abs_correlation": 0.07618785298051971
+      },
+      {
+        "feature_1": "age",
+        "feature_2": "hours_per_week",
+        "correlation": 0.06855189701068196,
+        "abs_correlation": 0.06855189701068196
+      },
+      {
+        "feature_1": "age",
+        "feature_2": "capital_loss",
+        "correlation": 0.057022831215841896,
+        "abs_correlation": 0.057022831215841896
+      },
+      {
+        "feature_1": "capital_loss",
+        "feature_2": "hours_per_week",
+        "correlation": 0.05493629986809718,
+        "abs_correlation": 0.05493629986809718
+      },
+      {
+        "feature_1": "fnlwgt",
+        "feature_2": "education_num",
+        "correlation": -0.043293869632554945,
+        "abs_correlation": 0.043293869632554945
+      }
+    ],
+    "excluded_identifier_like_columns": []
+  },
+  "target_aware_analysis": {
+    "target_column": "income",
+    "analysis_type": "categorical_target",
+    "findings": [
+      "Target class distribution: <=50K=24499, >50K=7767.",
+      "ANOVA for 'age' across target 'income' groups: p-value=0.",
+      "ANOVA for 'fnlwgt' across target 'income' groups: p-value=0.1272.",
+      "ANOVA for 'education_num' across target 'income' groups: p-value=0.",
+      "ANOVA for 'capital_gain' across target 'income' groups: p-value=0.",
+      "ANOVA for 'capital_loss' across target 'income' groups: p-value=3.442e-159.",
+      "ANOVA for 'hours_per_week' across target 'income' groups: p-value=0."
+    ],
+    "numeric_features_considered": [
+      "age",
+      "fnlwgt",
+      "education_num",
+      "capital_gain",
+      "capital_loss",
+      "hours_per_week"
+    ],
+    "categorical_features_considered": [
+      "workclass",
+      "education",
+      "marital_status",
+      "occupation",
+      "relationship",
+      "race",
+      "sex",
+      "native_country"
+    ]
+  },
+  "visualization_recommendation": {
+    "recommendation_count": 5,
+    "recommendations": [
+      {
+        "chart_type": "missing_bar",
+        "x": "column",
+        "y": "missing_count",
+        "title": "Missing values by column",
+        "reason": "Columns with missing values were detected.",
+        "priority": 1
+      },
+      {
+        "chart_type": "bar",
+        "x": "income",
+        "y": "count",
+        "title": "Category frequencies for income",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "bar",
+        "x": "race",
+        "y": "count",
+        "title": "Category frequencies for race",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "bar",
+        "x": "relationship",
+        "y": "count",
+        "title": "Category frequencies for relationship",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      },
+      {
+        "chart_type": "bar",
+        "x": "sex",
+        "y": "count",
+        "title": "Category frequencies for sex",
+        "reason": "Categorical frequency comparison.",
+        "priority": 2
+      }
+    ],
+    "filter_diagnostics": {
+      "excluded_identifier_like_columns": [],
+      "excluded_high_cardinality_categorical_columns": [
+        "native_country"
+      ],
+      "excluded_user_avoid_columns": [
+        "age",
+        "capital_gain",
+        "capital_loss",
+        "education_num",
+        "fnlwgt",
+        "hours_per_week"
+      ],
+      "numeric_candidates_used": [],
+      "categorical_candidates_used": [
+        "income",
+        "sex",
+        "race",
+        "relationship",
+        "workclass",
+        "occupation",
+        "education",
+        "marital_status"
+      ]
+    }
+  },
+  "chart_generation": {
+    "charts_generated": 5,
+    "chart_paths": [
+      "charts\\missing_values_bar.png",
+      "charts\\catbar_income.png",
+      "charts\\catbar_race.png",
+      "charts\\catbar_relationship.png",
+      "charts\\catbar_sex.png"
+    ],
+    "plot_failures": []
+  },
+  "insight_generation": {
+    "insight_count": 5,
+    "raw_insight_count": 6,
+    "redundant_insight_count": 1,
+    "redundancy_ratio": 0.16666666666666666,
+    "insights": [
+      {
+        "source_tool": "dataset_overview",
+        "insight": "Dataset contains 32560 rows and 15 columns.",
+        "insight_id": 1
+      },
+      {
+        "source_tool": "missing_value_analysis",
+        "insight": "Missing data affects 9061 cells (1.86%); most impacted columns: occupation (2143), workclass (2127), native_country (903).",
+        "insight_id": 2
+      },
+      {
+        "source_tool": "correlation_analysis",
+        "insight": "Strongest absolute correlation is between education_num and hours_per_week (r=0.148).",
+        "insight_id": 3
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "Target class distribution: <=50K=24499, >50K=7767.",
+        "insight_id": 4
+      },
+      {
+        "source_tool": "target_aware_analysis",
+        "insight": "ANOVA for 'age' across target 'income' groups: p-value=0.",
+        "insight_id": 5
+      }
+    ]
+  }
+}

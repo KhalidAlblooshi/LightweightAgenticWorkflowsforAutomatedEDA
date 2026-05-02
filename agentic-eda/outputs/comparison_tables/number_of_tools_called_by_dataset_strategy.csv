@@ -1,0 +1,4 @@
+dataset_name,fixed,llm,rule
+adult_income,10.0,10.0,11.0
+diamonds,10.0,10.6,11.0
+titanic_style,10.0,10.7,11.0

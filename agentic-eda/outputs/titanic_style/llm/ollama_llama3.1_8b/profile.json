@@ -1,0 +1,358 @@
+{
+  "dataset_name": "titanic_style",
+  "row_count": 891,
+  "column_count": 11,
+  "numeric_columns": [
+    "PassengerId",
+    "Pclass",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare",
+    "Survived"
+  ],
+  "categorical_columns": [
+    "Name",
+    "Sex",
+    "Embarked",
+    "Cabin"
+  ],
+  "column_types": {
+    "PassengerId": "float64",
+    "Pclass": "float64",
+    "Name": "str",
+    "Sex": "str",
+    "Age": "float64",
+    "SibSp": "float64",
+    "Parch": "float64",
+    "Fare": "float64",
+    "Embarked": "str",
+    "Survived": "float64",
+    "Cabin": "str"
+  },
+  "missing_counts": {
+    "PassengerId": 8,
+    "Pclass": 10,
+    "Name": 7,
+    "Sex": 9,
+    "Age": 186,
+    "SibSp": 7,
+    "Parch": 9,
+    "Fare": 13,
+    "Embarked": 14,
+    "Survived": 7,
+    "Cabin": 687
+  },
+  "missing_percentages": {
+    "PassengerId": 0.9,
+    "Pclass": 1.12,
+    "Name": 0.79,
+    "Sex": 1.01,
+    "Age": 20.88,
+    "SibSp": 0.79,
+    "Parch": 1.01,
+    "Fare": 1.46,
+    "Embarked": 1.57,
+    "Survived": 0.79,
+    "Cabin": 77.1
+  },
+  "duplicate_rows": 0,
+  "column_stats": {
+    "PassengerId": {
+      "dtype": "float64",
+      "non_null_count": 883,
+      "missing_count": 8,
+      "missing_percentage": 0.8978675645342313,
+      "unique_count": 883,
+      "unique_ratio": 1.0,
+      "singleton_ratio": 1.0,
+      "is_identifier_like": true
+    },
+    "Pclass": {
+      "dtype": "float64",
+      "non_null_count": 881,
+      "missing_count": 10,
+      "missing_percentage": 1.122334455667789,
+      "unique_count": 3,
+      "unique_ratio": 0.00340522133938706,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Name": {
+      "dtype": "str",
+      "non_null_count": 884,
+      "missing_count": 7,
+      "missing_percentage": 0.7856341189674524,
+      "unique_count": 884,
+      "unique_ratio": 1.0,
+      "singleton_ratio": 1.0,
+      "is_identifier_like": true
+    },
+    "Sex": {
+      "dtype": "str",
+      "non_null_count": 882,
+      "missing_count": 9,
+      "missing_percentage": 1.0101010101010102,
+      "unique_count": 2,
+      "unique_ratio": 0.0022675736961451248,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Age": {
+      "dtype": "float64",
+      "non_null_count": 705,
+      "missing_count": 186,
+      "missing_percentage": 20.875420875420875,
+      "unique_count": 87,
+      "unique_ratio": 0.12340425531914893,
+      "singleton_ratio": 0.1724137931034483,
+      "is_identifier_like": false
+    },
+    "SibSp": {
+      "dtype": "float64",
+      "non_null_count": 884,
+      "missing_count": 7,
+      "missing_percentage": 0.7856341189674524,
+      "unique_count": 7,
+      "unique_ratio": 0.007918552036199095,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Parch": {
+      "dtype": "float64",
+      "non_null_count": 882,
+      "missing_count": 9,
+      "missing_percentage": 1.0101010101010102,
+      "unique_count": 7,
+      "unique_ratio": 0.007936507936507936,
+      "singleton_ratio": 0.14285714285714285,
+      "is_identifier_like": false
+    },
+    "Fare": {
+      "dtype": "float64",
+      "non_null_count": 878,
+      "missing_count": 13,
+      "missing_percentage": 1.4590347923681257,
+      "unique_count": 245,
+      "unique_ratio": 0.27904328018223234,
+      "singleton_ratio": 0.3836734693877551,
+      "is_identifier_like": false
+    },
+    "Embarked": {
+      "dtype": "str",
+      "non_null_count": 877,
+      "missing_count": 14,
+      "missing_percentage": 1.5712682379349048,
+      "unique_count": 3,
+      "unique_ratio": 0.0034207525655644243,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Survived": {
+      "dtype": "float64",
+      "non_null_count": 884,
+      "missing_count": 7,
+      "missing_percentage": 0.7856341189674524,
+      "unique_count": 2,
+      "unique_ratio": 0.0022624434389140274,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Cabin": {
+      "dtype": "str",
+      "non_null_count": 204,
+      "missing_count": 687,
+      "missing_percentage": 77.10437710437711,
+      "unique_count": 147,
+      "unique_ratio": 0.7205882352941176,
+      "singleton_ratio": 0.6870748299319728,
+      "is_identifier_like": false
+    }
+  },
+  "numeric_column_stats": {
+    "PassengerId": {
+      "dtype": "float64",
+      "non_null_count": 883,
+      "missing_count": 8,
+      "missing_percentage": 0.8978675645342313,
+      "unique_count": 883,
+      "unique_ratio": 1.0,
+      "singleton_ratio": 1.0,
+      "is_identifier_like": true
+    },
+    "Pclass": {
+      "dtype": "float64",
+      "non_null_count": 881,
+      "missing_count": 10,
+      "missing_percentage": 1.122334455667789,
+      "unique_count": 3,
+      "unique_ratio": 0.00340522133938706,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Age": {
+      "dtype": "float64",
+      "non_null_count": 705,
+      "missing_count": 186,
+      "missing_percentage": 20.875420875420875,
+      "unique_count": 87,
+      "unique_ratio": 0.12340425531914893,
+      "singleton_ratio": 0.1724137931034483,
+      "is_identifier_like": false
+    },
+    "SibSp": {
+      "dtype": "float64",
+      "non_null_count": 884,
+      "missing_count": 7,
+      "missing_percentage": 0.7856341189674524,
+      "unique_count": 7,
+      "unique_ratio": 0.007918552036199095,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Parch": {
+      "dtype": "float64",
+      "non_null_count": 882,
+      "missing_count": 9,
+      "missing_percentage": 1.0101010101010102,
+      "unique_count": 7,
+      "unique_ratio": 0.007936507936507936,
+      "singleton_ratio": 0.14285714285714285,
+      "is_identifier_like": false
+    },
+    "Fare": {
+      "dtype": "float64",
+      "non_null_count": 878,
+      "missing_count": 13,
+      "missing_percentage": 1.4590347923681257,
+      "unique_count": 245,
+      "unique_ratio": 0.27904328018223234,
+      "singleton_ratio": 0.3836734693877551,
+      "is_identifier_like": false
+    },
+    "Survived": {
+      "dtype": "float64",
+      "non_null_count": 884,
+      "missing_count": 7,
+      "missing_percentage": 0.7856341189674524,
+      "unique_count": 2,
+      "unique_ratio": 0.0022624434389140274,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    }
+  },
+  "categorical_column_stats": {
+    "Name": {
+      "dtype": "str",
+      "non_null_count": 884,
+      "missing_count": 7,
+      "missing_percentage": 0.7856341189674524,
+      "unique_count": 884,
+      "unique_ratio": 1.0,
+      "singleton_ratio": 1.0,
+      "is_identifier_like": true
+    },
+    "Sex": {
+      "dtype": "str",
+      "non_null_count": 882,
+      "missing_count": 9,
+      "missing_percentage": 1.0101010101010102,
+      "unique_count": 2,
+      "unique_ratio": 0.0022675736961451248,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Embarked": {
+      "dtype": "str",
+      "non_null_count": 877,
+      "missing_count": 14,
+      "missing_percentage": 1.5712682379349048,
+      "unique_count": 3,
+      "unique_ratio": 0.0034207525655644243,
+      "singleton_ratio": 0.0,
+      "is_identifier_like": false
+    },
+    "Cabin": {
+      "dtype": "str",
+      "non_null_count": 204,
+      "missing_count": 687,
+      "missing_percentage": 77.10437710437711,
+      "unique_count": 147,
+      "unique_ratio": 0.7205882352941176,
+      "singleton_ratio": 0.6870748299319728,
+      "is_identifier_like": false
+    }
+  },
+  "id_like_columns": [
+    "PassengerId",
+    "Name"
+  ],
+  "likely_target_col": "Survived",
+  "sample_rows": [
+    {
+      "PassengerId": 1.0,
+      "Pclass": 3.0,
+      "Name": "Braund, Mr. Owen Harris",
+      "Sex": "male",
+      "Age": 22.0,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Fare": 7.25,
+      "Embarked": "S",
+      "Survived": 0.0,
+      "Cabin": NaN
+    },
+    {
+      "PassengerId": 2.0,
+      "Pclass": 1.0,
+      "Name": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)",
+      "Sex": "female",
+      "Age": 38.0,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Fare": 71.2833,
+      "Embarked": "C",
+      "Survived": 1.0,
+      "Cabin": "C85"
+    },
+    {
+      "PassengerId": 3.0,
+      "Pclass": 3.0,
+      "Name": "Heikkinen, Miss. Laina",
+      "Sex": "female",
+      "Age": 26.0,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Fare": 7.925,
+      "Embarked": "S",
+      "Survived": 1.0,
+      "Cabin": NaN
+    },
+    {
+      "PassengerId": 4.0,
+      "Pclass": 1.0,
+      "Name": "Futrelle, Mrs. Jacques Heath (Lily May Peel)",
+      "Sex": "female",
+      "Age": 35.0,
+      "SibSp": 1.0,
+      "Parch": 0.0,
+      "Fare": 53.1,
+      "Embarked": "S",
+      "Survived": 1.0,
+      "Cabin": "C123"
+    },
+    {
+      "PassengerId": 5.0,
+      "Pclass": 3.0,
+      "Name": "Allen, Mr. William Henry",
+      "Sex": "male",
+      "Age": 35.0,
+      "SibSp": 0.0,
+      "Parch": 0.0,
+      "Fare": 8.05,
+      "Embarked": "S",
+      "Survived": 0.0,
+      "Cabin": NaN
+    }
+  ]
+}
